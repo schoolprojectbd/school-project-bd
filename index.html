@@ -1,433 +1,429 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School Project BD</title>
 
-  <title>School Project BD</title>
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial, sans-serif;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+body{
+  background:#f3f5f7;
+  color:#222;
+}
 
-    body {
-      background: #f4f6f8;
-      color: #222;
-    }
+header{
+  background:#0878f9;
+  color:white;
+  text-align:center;
+  padding:28px 15px;
+}
 
-    header {
-      background: #0d6efd;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
+header h1{
+  font-size:30px;
+  margin-bottom:8px;
+}
 
-    header h1 {
-      font-size: 28px;
-    }
+header p{
+  font-size:16px;
+}
 
-    header p {
-      margin-top: 6px;
-    }
+.container{
+  width:94%;
+  max-width:1100px;
+  margin:30px auto;
+}
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 20px;
-    }
+.container > h2{
+  font-size:28px;
+  margin-bottom:20px;
+}
 
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:22px;
+}
 
-    .product {
-      background: white;
-      border-radius: 15px;
-      padding: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      text-align: center;
-    }
+.card{
+  background:white;
+  border-radius:20px;
+  padding:18px;
+  text-align:center;
+  box-shadow:0 5px 20px rgba(0,0,0,.10);
+}
 
-    .product img {
-      width: 100%;
-      height: 180px;
-      object-fit: contain;
-      border-radius: 10px;
-      background: #f5f5f5;
-    }
+.product-img{
+  width:100%;
+  height:210px;
+  object-fit:contain;
+  border-radius:14px;
+  background:#f7f7f7;
+  margin-bottom:15px;
+}
 
-    .product h2 {
-      font-size: 20px;
-      margin: 12px 0 8px;
-    }
+.card h3{
+  font-size:24px;
+  margin:8px 0;
+}
 
-    .owner {
-      color: #666;
-      margin-bottom: 8px;
-    }
+.owner{
+  color:#666;
+  font-size:17px;
+  margin:8px 0;
+}
 
-    .price {
-      color: #0d6efd;
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
+.price{
+  color:#0878f9;
+  font-size:26px;
+  font-weight:bold;
+  margin:10px 0;
+}
 
-    .quantity {
-      width: 70px;
-      padding: 8px;
-      margin-bottom: 12px;
-      text-align: center;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
+.quantity{
+  margin:15px 0;
+  font-size:18px;
+}
 
-    button {
-      border: none;
-      padding: 11px 15px;
-      border-radius: 8px;
-      cursor: pointer;
-      margin: 4px;
-      font-weight: bold;
-    }
+.quantity input{
+  width:90px;
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:10px;
+  text-align:center;
+  font-size:18px;
+}
 
-    .cart-btn {
-      background: #ffc107;
-      color: #000;
-    }
+.buttons{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+}
 
-    .order-btn {
-      background: #198754;
-      color: white;
-    }
+button{
+  border:0;
+  padding:13px 18px;
+  border-radius:12px;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
 
-    button:hover {
-      opacity: 0.85;
-    }
+.cart{
+  background:#ffbd08;
+  color:#222;
+}
 
-    #cart {
-      background: white;
-      margin-top: 30px;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+.order{
+  background:#159447;
+}
 
-    #cart h2 {
-      margin-bottom: 15px;
-    }
+button:active{
+  transform:scale(.97);
+}
 
-    .cart-item {
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
-    }
+#cartBox{
+  display:none;
+  position:fixed;
+  left:10px;
+  right:10px;
+  bottom:15px;
+  background:white;
+  padding:18px;
+  border-radius:18px;
+  box-shadow:0 5px 30px rgba(0,0,0,.25);
+  z-index:10;
+}
 
-    .order-form {
-      margin-top: 20px;
-      display: none;
-      background: #fff;
-      padding: 20px;
-      border-radius: 15px;
-    }
+#cartBox h3{
+  margin-bottom:10px;
+}
 
-    .order-form input,
-    .order-form textarea {
-      width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
+#cartItems{
+  margin-bottom:10px;
+}
 
-    .submit-order {
-      background: #0d6efd;
-      color: white;
-      width: 100%;
-    }
+.whatsapp{
+  display:block;
+  background:#25D366;
+  color:white;
+  text-decoration:none;
+  text-align:center;
+  padding:13px;
+  border-radius:12px;
+  font-weight:bold;
+}
 
-    footer {
-      margin-top: 40px;
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-  </style>
+footer{
+  margin-top:40px;
+  background:#222;
+  color:white;
+  text-align:center;
+  padding:25px 10px;
+}
+
+@media(max-width:500px){
+  header h1{
+    font-size:25px;
+  }
+
+  .container > h2{
+    font-size:24px;
+  }
+
+  .card h3{
+    font-size:21px;
+  }
+
+  .buttons{
+    flex-direction:column;
+  }
+
+  button{
+    width:100%;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>🛒 School Project BD</h1>
+  <h1>School Project BD</h1>
   <p>ইলেকট্রনিক্স ও প্রজেক্ট সামগ্রীর অনলাইন শপ</p>
 </header>
 
 <div class="container">
 
-  <h2 style="margin-bottom:20px;">আমাদের পণ্য</h2>
+<h2>আমাদের পণ্য</h2>
 
-  <div class="products">
+<div class="products">
 
-    <!-- Product 1 -->
-    <div class="product">
-      <img src="https://via.placeholder.com/300x200?text=Arduino" alt="Arduino">
-      <h2>Arduino UNO</h2>
-      <p class="owner">Owner: School Project BD</p>
-      <p class="price">৳ 450</p>
+<!-- Arduino -->
+<div class="card">
+  <img class="product-img"
+       src="https://upload.wikimedia.org/wikipedia/commons/3/38/Arduino_Uno_-_R3.jpg"
+       alt="Arduino UNO">
 
-      <label>পরিমাণ:</label>
-      <input class="quantity" type="number" value="1" min="1">
+  <h3>Arduino UNO</h3>
+  <p class="owner">Owner: School Project BD</p>
+  <p class="price">৳ 450</p>
 
-      <br>
-
-      <button class="cart-btn"
-        onclick="addToCart('Arduino UNO', 450, this)">
-        🛒 Add to Cart
-      </button>
-
-      <button class="order-btn"
-        onclick="orderNow('Arduino UNO', 450, this)">
-        🛍️ Order Now
-      </button>
-    </div>
-
-    <!-- Product 2 -->
-    <div class="product">
-      <img src="https://via.placeholder.com/300x200?text=LED" alt="LED">
-      <h2>LED Light</h2>
-      <p class="owner">Owner: School Project BD</p>
-      <p class="price">৳ 20</p>
-
-      <label>পরিমাণ:</label>
-      <input class="quantity" type="number" value="1" min="1">
-
-      <br>
-
-      <button class="cart-btn"
-        onclick="addToCart('LED Light', 20, this)">
-        🛒 Add to Cart
-      </button>
-
-      <button class="order-btn"
-        onclick="orderNow('LED Light', 20, this)">
-        🛍️ Order Now
-      </button>
-    </div>
-
-    <!-- Product 3 -->
-    <div class="product">
-      <img src="https://via.placeholder.com/300x200?text=Sensor" alt="Sensor">
-      <h2>Ultrasonic Sensor</h2>
-      <p class="owner">Owner: School Project BD</p>
-      <p class="price">৳ 150</p>
-
-      <label>পরিমাণ:</label>
-      <input class="quantity" type="number" value="1" min="1">
-
-      <br>
-
-      <button class="cart-btn"
-        onclick="addToCart('Ultrasonic Sensor', 150, this)">
-        🛒 Add to Cart
-      </button>
-
-      <button class="order-btn"
-        onclick="orderNow('Ultrasonic Sensor', 150, this)">
-        🛍️ Order Now
-      </button>
-    </div>
-
+  <div class="quantity">
+    পরিমাণ:
+    <input type="number" id="qty1" value="1" min="1">
   </div>
 
-
-  <!-- Cart -->
-  <div id="cart">
-    <h2>🛒 আপনার Cart</h2>
-
-    <div id="cartItems">
-      <p>Cart এখন খালি।</p>
-    </div>
-
-    <h3 style="margin-top:15px;">
-      মোট: ৳ <span id="total">0</span>
-    </h3>
-  </div>
-
-
-  <!-- Order Form -->
-  <div class="order-form" id="orderForm">
-
-    <h2>📦 Order করুন</h2>
-
-    <p id="selectedProduct"></p>
-
-    <input type="text" id="customerName"
-      placeholder="আপনার নাম">
-
-    <input type="tel" id="phone"
-      placeholder="মোবাইল নম্বর">
-
-    <textarea id="address"
-      placeholder="আপনার ঠিকানা"></textarea>
-
-    <button class="submit-order"
-      onclick="submitOrder()">
-      ✅ Order Confirm করুন
+  <div class="buttons">
+    <button class="cart" onclick="addCart('Arduino UNO',450,'qty1')">
+      🛒 Add to Cart
     </button>
 
+    <button class="order" onclick="orderNow('Arduino UNO',450,'qty1')">
+      🛍️ Order Now
+    </button>
+  </div>
+</div>
+
+
+<!-- LED -->
+<div class="card">
+  <img class="product-img"
+       src="https://upload.wikimedia.org/wikipedia/commons/1/1b/LEDs.jpg"
+       alt="LED Light">
+
+  <h3>LED Light</h3>
+  <p class="owner">Owner: School Project BD</p>
+  <p class="price">৳ 20</p>
+
+  <div class="quantity">
+    পরিমাণ:
+    <input type="number" id="qty2" value="1" min="1">
   </div>
 
+  <div class="buttons">
+    <button class="cart" onclick="addCart('LED Light',20,'qty2')">
+      🛒 Add to Cart
+    </button>
+
+    <button class="order" onclick="orderNow('LED Light',20,'qty2')">
+      🛍️ Order Now
+    </button>
+  </div>
+</div>
+
+
+<!-- Ultrasonic Sensor -->
+<div class="card">
+  <img class="product-img"
+       src="https://upload.wikimedia.org/wikipedia/commons/4/4b/HC-SR04_Ultrasonic_Sensor.jpg"
+       alt="Ultrasonic Sensor">
+
+  <h3>Ultrasonic Sensor</h3>
+  <p class="owner">Owner: School Project BD</p>
+  <p class="price">৳ 120</p>
+
+  <div class="quantity">
+    পরিমাণ:
+    <input type="number" id="qty3" value="1" min="1">
+  </div>
+
+  <div class="buttons">
+    <button class="cart" onclick="addCart('Ultrasonic Sensor',120,'qty3')">
+      🛒 Add to Cart
+    </button>
+
+    <button class="order" onclick="orderNow('Ultrasonic Sensor',120,'qty3')">
+      🛍️ Order Now
+    </button>
+  </div>
+</div>
+
+
+<!-- Jumper Wire -->
+<div class="card">
+  <img class="product-img"
+       src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Jumper_wires.jpg"
+       alt="Jumper Wire">
+
+  <h3>Jumper Wire</h3>
+  <p class="owner">Owner: School Project BD</p>
+  <p class="price">৳ 80</p>
+
+  <div class="quantity">
+    পরিমাণ:
+    <input type="number" id="qty4" value="1" min="1">
+  </div>
+
+  <div class="buttons">
+    <button class="cart" onclick="addCart('Jumper Wire',80,'qty4')">
+      🛒 Add to Cart
+    </button>
+
+    <button class="order" onclick="orderNow('Jumper Wire',80,'qty4')">
+      🛍️ Order Now
+    </button>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+<!-- Cart -->
+<div id="cartBox">
+  <h3>🛒 আপনার Cart</h3>
+  <div id="cartItems">Cart খালি।</div>
+
+  <a class="whatsapp" id="whatsappLink" href="#" target="_blank">
+    WhatsApp-এ অর্ডার করুন
+  </a>
 </div>
 
 
 <footer>
   <p>© 2026 School Project BD</p>
-  <p>All Rights Reserved</p>
+  <p>ইলেকট্রনিক্স ও প্রজেক্ট সামগ্রী</p>
 </footer>
 
 
 <script>
 
-  let cart = [];
-  let selectedOrder = null;
+let cart=[];
+
+/* Add to Cart */
+function addCart(name,price,qtyId){
+
+  let qty=parseInt(document.getElementById(qtyId).value);
+
+  if(qty<1) qty=1;
+
+  cart.push({
+    name:name,
+    price:price,
+    qty:qty
+  });
+
+  updateCart();
+
+  alert(name+" Cart-এ যোগ করা হয়েছে।");
+}
 
 
-  function addToCart(name, price, button) {
+/* Update Cart */
+function updateCart(){
 
-    let product = button.parentElement;
-    let quantity = product.querySelector(".quantity").value;
+  let box=document.getElementById("cartBox");
+  let items=document.getElementById("cartItems");
 
-    quantity = parseInt(quantity);
+  box.style.display="block";
 
-    cart.push({
-      name: name,
-      price: price,
-      quantity: quantity
-    });
+  let total=0;
+  let html="";
 
-    showCart();
+  cart.forEach(function(item){
 
-    alert(name + " Cart-এ যোগ হয়েছে!");
-  }
+    let subtotal=item.price*item.qty;
+    total+=subtotal;
 
+    html +=
+      "<p><b>"+item.name+"</b> × "+item.qty+
+      " = ৳ "+subtotal+"</p>";
+  });
 
-  function showCart() {
+  html += "<hr><p><b>মোট: ৳ "+total+"</b></p>";
 
-    let cartItems = document.getElementById("cartItems");
-    let totalElement = document.getElementById("total");
+  items.innerHTML=html;
 
-    cartItems.innerHTML = "";
+  let message="School Project BD Order%0A%0A";
 
-    let total = 0;
+  cart.forEach(function(item){
+    message +=
+      item.name+" × "+item.qty+
+      " = ৳ "+(item.price*item.qty)+"%0A";
+  });
 
-    if (cart.length === 0) {
+  message += "%0Aমোট = ৳ "+total;
 
-      cartItems.innerHTML =
-        "<p>Cart এখন খালি।</p>";
+  /* এখানে নিজের WhatsApp নম্বর বসাবে */
+  let phone="8801XXXXXXXXX";
 
-      totalElement.innerText = "0";
-
-      return;
-    }
-
-
-    cart.forEach(function(item, index) {
-
-      let itemTotal =
-        item.price * item.quantity;
-
-      total += itemTotal;
-
-      cartItems.innerHTML += `
-        <div class="cart-item">
-          <b>${item.name}</b><br>
-          পরিমাণ: ${item.quantity}<br>
-          দাম: ৳ ${itemTotal}
-          <br>
-          <button onclick="removeItem(${index})">
-            ❌ Remove
-          </button>
-        </div>
-      `;
-
-    });
-
-    totalElement.innerText = total;
-  }
+  document.getElementById("whatsappLink").href=
+    "https://wa.me/"+phone+"?text="+message;
+}
 
 
-  function removeItem(index) {
+/* Order Now */
+function orderNow(name,price,qtyId){
 
-    cart.splice(index, 1);
+  let qty=parseInt(document.getElementById(qtyId).value);
 
-    showCart();
-  }
+  if(qty<1) qty=1;
 
+  let total=price*qty;
 
-  function orderNow(name, price, button) {
+  let message=
+    "School Project BD Order%0A%0A"+
+    "পণ্য: "+name+"%0A"+
+    "পরিমাণ: "+qty+"%0A"+
+    "দাম: ৳ "+price+"%0A"+
+    "মোট: ৳ "+total;
 
-    let product = button.parentElement;
+  /* এখানে নিজের WhatsApp নম্বর বসাবে */
+  let phone="8801804407566
 
-    let quantity =
-      product.querySelector(".quantity").value;
-
-    selectedOrder = {
-      name: name,
-      price: price,
-      quantity: quantity
-    };
-
-    document.getElementById("selectedProduct").innerText =
-      "পণ্য: " + name +
-      " | পরিমাণ: " + quantity +
-      " | মোট: ৳ " +
-      (price * quantity);
-
-    document.getElementById("orderForm").style.display =
-      "block";
-
-    window.scrollTo({
-      top: document.getElementById("orderForm").offsetTop,
-      behavior: "smooth"
-    });
-  }
-
-
-  function submitOrder() {
-
-    let name =
-      document.getElementById("customerName").value;
-
-    let phone =
-      document.getElementById("phone").value;
-
-    let address =
-      document.getElementById("address").value;
-
-
-    if (name === "" || phone === "" || address === "") {
-
-      alert("দয়া করে আপনার নাম, মোবাইল নম্বর ও ঠিকানা দিন।");
-
-      return;
-    }
-
-
-    alert(
-      "✅ আপনার Order গ্রহণ করা হয়েছে!\n\n" +
-      "পণ্য: " + selectedOrder.name +
-      "\nপরিমাণ: " + selectedOrder.quantity +
-      "\nনাম: " + name +
-      "\nমোবাইল: " + phone
-    );
-
-  }
+  window.open(
+    "https://wa.me/"+phone+"?text="+message,
+    "_blank"
+  );
+}
 
 </script>
 
