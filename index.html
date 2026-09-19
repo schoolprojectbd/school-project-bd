@@ -1,221 +1,435 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>School Project BD</title>
+  <title>School Project BD</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #222;
-        }
+    body {
+      background: #f4f6f8;
+      color: #222;
+    }
 
-        header {
-            background: #0d6efd;
-            color: white;
-            padding: 25px 15px;
-            text-align: center;
-        }
+    header {
+      background: #0d6efd;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
 
-        header h1 {
-            margin: 0;
-            font-size: 30px;
-        }
+    header h1 {
+      font-size: 28px;
+    }
 
-        header p {
-            margin: 8px 0;
-        }
+    header p {
+      margin-top: 6px;
+    }
 
-        .owner {
-            background: white;
-            color: #333;
-            margin: 15px auto 0;
-            padding: 10px 15px;
-            max-width: 350px;
-            border-radius: 8px;
-            font-size: 15px;
-        }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
 
-        .container {
-            padding: 20px 15px;
-            max-width: 900px;
-            margin: auto;
-        }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
 
-        h2 {
-            text-align: center;
-            color: #0d6efd;
-        }
+    .product {
+      background: white;
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
 
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-        }
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #f5f5f5;
+    }
 
-        .product {
-            background: white;
-            padding: 18px;
-            border-radius: 12px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.10);
-        }
+    .product h2 {
+      font-size: 20px;
+      margin: 12px 0 8px;
+    }
 
-        .product h3 {
-            margin-top: 0;
-            color: #0d6efd;
-        }
+    .owner {
+      color: #666;
+      margin-bottom: 8px;
+    }
 
-        .product p {
-            color: #555;
-        }
+    .price {
+      color: #0d6efd;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
 
-        .price {
-            font-weight: bold;
-            color: #198754;
-        }
+    .quantity {
+      width: 70px;
+      padding: 8px;
+      margin-bottom: 12px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
 
-        button {
-            background: #0d6efd;
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 7px;
-            font-size: 15px;
-        }
+    button {
+      border: none;
+      padding: 11px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 4px;
+      font-weight: bold;
+    }
 
-        footer {
-            margin-top: 30px;
-            background: #212529;
-            color: white;
-            text-align: center;
-            padding: 18px;
-        }
-    </style>
+    .cart-btn {
+      background: #ffc107;
+      color: #000;
+    }
+
+    .order-btn {
+      background: #198754;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.85;
+    }
+
+    #cart {
+      background: white;
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    #cart h2 {
+      margin-bottom: 15px;
+    }
+
+    .cart-item {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .order-form {
+      margin-top: 20px;
+      display: none;
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+    }
+
+    .order-form input,
+    .order-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .submit-order {
+      background: #0d6efd;
+      color: white;
+      width: 100%;
+    }
+
+    footer {
+      margin-top: 40px;
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
 </head>
 
 <body>
 
-    <header>
+<header>
+  <h1>🛒 School Project BD</h1>
+  <p>ইলেকট্রনিক্স ও প্রজেক্ট সামগ্রীর অনলাইন শপ</p>
+</header>
 
-        <h1>School Project BD</h1>
+<div class="container">
 
-        <p>Electronic Parts & Project Store</p>
+  <h2 style="margin-bottom:20px;">আমাদের পণ্য</h2>
 
-        <div class="owner">
-            <strong>Owner:</strong> আপনার নাম এখানে লিখুন
-        </div>
+  <div class="products">
 
-    </header>
+    <!-- Product 1 -->
+    <div class="product">
+      <img src="https://via.placeholder.com/300x200?text=Arduino" alt="Arduino">
+      <h2>Arduino UNO</h2>
+      <p class="owner">Owner: School Project BD</p>
+      <p class="price">৳ 450</p>
 
+      <label>পরিমাণ:</label>
+      <input class="quantity" type="number" value="1" min="1">
 
-    <div class="container">
+      <br>
 
-        <h2>Our Products</h2>
+      <button class="cart-btn"
+        onclick="addToCart('Arduino UNO', 450, this)">
+        🛒 Add to Cart
+      </button>
 
-        <div class="products">
-
-            <div class="product">
-                <h3>Arduino UNO R3</h3>
-                <p>Arduino UNO development board.</p>
-                <p class="price">Price: Contact Us</p>
-                <button>Order Now</button>
-            </div>
-
-            <div class="product">
-                <h3>ESP32 Development Board</h3>
-                <p>Wi-Fi এবং Bluetooth সমর্থিত development board.</p>
-                <p class="price">Price: Contact Us</p>
-                <button>Order Now</button>
-            </div>
-
-            <div class="product">
-                <h3>NodeMCU ESP8266</h3>
-                <p>Wi-Fi based development board.</p>
-                <p class="price">Price: Contact Us</p>
-                <button>Order Now</button>
-            </div>
-
-            <div class="product">
-                <h3>Breadboard</h3>
-                <p>Electronic circuit prototype তৈরির জন্য।</p>
-                <p class="price">Price: Contact Us</p>
-                <button>Order Now</button>
-            </div>
-
-            <div class="product">
-                <h3>Jumper Wire</h3>
-                <p>Male-Male, Male-Female এবং Female-Female.</p>
-                <p class="price">Price: Contact Us</p>
-                <button>Order Now</button>
-            </div>
-
-            <div class="product">
-                <h3>LED</h3>
-                <p>বিভিন্ন রঙের LED light.</p>
-                <p class="price">Price: Contact Us</p>
-                <button>Order Now</button>
-            </div>
-
-            <div class="product">
-                <h3>Resistor</h3>
-                <p>বিভিন্ন মানের electronic resistor.</p>
-                <p class="price">Price: Contact Us</p>
-                <button>Order Now</button>
-            </div>
-
-            <div class="product">
-                <h3>Capacitor</h3>
-                <p>বিভিন্ন মানের electronic capacitor.</p>
-                <p class="price">Price: Contact Us</p>
-                <button>Order Now</button>
-            </div>
-
-            <div class="product">
-                <h3>5V Relay Module</h3>
-                <p>Arduino ও অন্যান্য project-এর জন্য relay module.</p>
-                <p class="price">Price: Contact Us</p>
-                <button>Order Now</button>
-            </div>
-
-            <div class="product">
-                <h3>DC Motor</h3>
-                <p>Electronic project-এর জন্য DC motor.</p>
-                <p class="price">Price: Contact Us</p>
-                <button>Order Now</button>
-            </div>
-
-            <div class="product">
-                <h3>IR Sensor Module</h3>
-                <p>Object detection ও robotics project-এর জন্য।</p>
-                <p class="price">Price: Contact Us</p>
-                <button>Order Now</button>
-            </div>
-
-            <div class="product">
-                <h3>Ultrasonic Sensor HC-SR04</h3>
-                <p>Distance measurement-এর জন্য ultrasonic sensor.</p>
-                <p class="price">Price: Contact Us</p>
-                <button>Order Now</button>
-            </div>
-
-        </div>
-
+      <button class="order-btn"
+        onclick="orderNow('Arduino UNO', 450, this)">
+        🛍️ Order Now
+      </button>
     </div>
 
+    <!-- Product 2 -->
+    <div class="product">
+      <img src="https://via.placeholder.com/300x200?text=LED" alt="LED">
+      <h2>LED Light</h2>
+      <p class="owner">Owner: School Project BD</p>
+      <p class="price">৳ 20</p>
 
-    <footer>
-        © 2026 School Project BD
-        <br>
-        Electronic Parts & Project Store
-    </footer>
+      <label>পরিমাণ:</label>
+      <input class="quantity" type="number" value="1" min="1">
+
+      <br>
+
+      <button class="cart-btn"
+        onclick="addToCart('LED Light', 20, this)">
+        🛒 Add to Cart
+      </button>
+
+      <button class="order-btn"
+        onclick="orderNow('LED Light', 20, this)">
+        🛍️ Order Now
+      </button>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product">
+      <img src="https://via.placeholder.com/300x200?text=Sensor" alt="Sensor">
+      <h2>Ultrasonic Sensor</h2>
+      <p class="owner">Owner: School Project BD</p>
+      <p class="price">৳ 150</p>
+
+      <label>পরিমাণ:</label>
+      <input class="quantity" type="number" value="1" min="1">
+
+      <br>
+
+      <button class="cart-btn"
+        onclick="addToCart('Ultrasonic Sensor', 150, this)">
+        🛒 Add to Cart
+      </button>
+
+      <button class="order-btn"
+        onclick="orderNow('Ultrasonic Sensor', 150, this)">
+        🛍️ Order Now
+      </button>
+    </div>
+
+  </div>
+
+
+  <!-- Cart -->
+  <div id="cart">
+    <h2>🛒 আপনার Cart</h2>
+
+    <div id="cartItems">
+      <p>Cart এখন খালি।</p>
+    </div>
+
+    <h3 style="margin-top:15px;">
+      মোট: ৳ <span id="total">0</span>
+    </h3>
+  </div>
+
+
+  <!-- Order Form -->
+  <div class="order-form" id="orderForm">
+
+    <h2>📦 Order করুন</h2>
+
+    <p id="selectedProduct"></p>
+
+    <input type="text" id="customerName"
+      placeholder="আপনার নাম">
+
+    <input type="tel" id="phone"
+      placeholder="মোবাইল নম্বর">
+
+    <textarea id="address"
+      placeholder="আপনার ঠিকানা"></textarea>
+
+    <button class="submit-order"
+      onclick="submitOrder()">
+      ✅ Order Confirm করুন
+    </button>
+
+  </div>
+
+</div>
+
+
+<footer>
+  <p>© 2026 School Project BD</p>
+  <p>All Rights Reserved</p>
+</footer>
+
+
+<script>
+
+  let cart = [];
+  let selectedOrder = null;
+
+
+  function addToCart(name, price, button) {
+
+    let product = button.parentElement;
+    let quantity = product.querySelector(".quantity").value;
+
+    quantity = parseInt(quantity);
+
+    cart.push({
+      name: name,
+      price: price,
+      quantity: quantity
+    });
+
+    showCart();
+
+    alert(name + " Cart-এ যোগ হয়েছে!");
+  }
+
+
+  function showCart() {
+
+    let cartItems = document.getElementById("cartItems");
+    let totalElement = document.getElementById("total");
+
+    cartItems.innerHTML = "";
+
+    let total = 0;
+
+    if (cart.length === 0) {
+
+      cartItems.innerHTML =
+        "<p>Cart এখন খালি।</p>";
+
+      totalElement.innerText = "0";
+
+      return;
+    }
+
+
+    cart.forEach(function(item, index) {
+
+      let itemTotal =
+        item.price * item.quantity;
+
+      total += itemTotal;
+
+      cartItems.innerHTML += `
+        <div class="cart-item">
+          <b>${item.name}</b><br>
+          পরিমাণ: ${item.quantity}<br>
+          দাম: ৳ ${itemTotal}
+          <br>
+          <button onclick="removeItem(${index})">
+            ❌ Remove
+          </button>
+        </div>
+      `;
+
+    });
+
+    totalElement.innerText = total;
+  }
+
+
+  function removeItem(index) {
+
+    cart.splice(index, 1);
+
+    showCart();
+  }
+
+
+  function orderNow(name, price, button) {
+
+    let product = button.parentElement;
+
+    let quantity =
+      product.querySelector(".quantity").value;
+
+    selectedOrder = {
+      name: name,
+      price: price,
+      quantity: quantity
+    };
+
+    document.getElementById("selectedProduct").innerText =
+      "পণ্য: " + name +
+      " | পরিমাণ: " + quantity +
+      " | মোট: ৳ " +
+      (price * quantity);
+
+    document.getElementById("orderForm").style.display =
+      "block";
+
+    window.scrollTo({
+      top: document.getElementById("orderForm").offsetTop,
+      behavior: "smooth"
+    });
+  }
+
+
+  function submitOrder() {
+
+    let name =
+      document.getElementById("customerName").value;
+
+    let phone =
+      document.getElementById("phone").value;
+
+    let address =
+      document.getElementById("address").value;
+
+
+    if (name === "" || phone === "" || address === "") {
+
+      alert("দয়া করে আপনার নাম, মোবাইল নম্বর ও ঠিকানা দিন।");
+
+      return;
+    }
+
+
+    alert(
+      "✅ আপনার Order গ্রহণ করা হয়েছে!\n\n" +
+      "পণ্য: " + selectedOrder.name +
+      "\nপরিমাণ: " + selectedOrder.quantity +
+      "\nনাম: " + name +
+      "\nমোবাইল: " + phone
+    );
+
+  }
+
+</script>
 
 </body>
 </html>
