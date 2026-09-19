@@ -1,193 +1,523 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>School Project BD</title>
+
+<title>School Project BD | Electronics Marketplace</title>
 
 <style>
 *{
-  box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family:Arial, sans-serif;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-  background:#f3f5f7;
+  background:#f5f5f5;
   color:#222;
 }
 
-header{
-  background:#0878f9;
-  color:white;
-  text-align:center;
-  padding:28px 15px;
+/* TOP BAR */
+.topbar{
+  background:#111827;
+  color:#fff;
+  font-size:13px;
+  padding:8px 5%;
+  display:flex;
+  justify-content:space-between;
 }
 
-header h1{
-  font-size:30px;
+/* HEADER */
+.header{
+  background:#ffffff;
+  padding:15px 5%;
+  display:flex;
+  align-items:center;
+  gap:25px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:220px;
+}
+
+.logo-icon{
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#ff6b00,#ff9f43);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+  font-weight:bold;
+}
+
+.logo-text h1{
+  font-size:21px;
+  color:#111827;
+}
+
+.logo-text p{
+  font-size:11px;
+  color:#777;
+}
+
+/* SEARCH */
+.search{
+  flex:1;
+  display:flex;
+  background:#f1f3f5;
+  border-radius:8px;
+  overflow:hidden;
+  border:1px solid #ddd;
+}
+
+.search input{
+  flex:1;
+  border:0;
+  outline:0;
+  padding:14px;
+  font-size:15px;
+  background:transparent;
+}
+
+.search button{
+  width:60px;
+  border:0;
+  background:#ff6b00;
+  color:white;
+  font-size:20px;
+  cursor:pointer;
+}
+
+/* CART */
+.cart{
+  position:relative;
+  font-size:27px;
+  cursor:pointer;
+}
+
+.cart-count{
+  position:absolute;
+  top:-8px;
+  right:-10px;
+  background:#ff3b30;
+  color:#fff;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  font-size:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* NAV */
+.nav{
+  background:#fff;
+  border-top:1px solid #eee;
+  border-bottom:1px solid #eee;
+  padding:11px 5%;
+  display:flex;
+  gap:28px;
+  overflow:auto;
+}
+
+.nav span{
+  white-space:nowrap;
+  cursor:pointer;
+  color:#444;
+  font-size:14px;
+}
+
+.nav span:hover{
+  color:#ff6b00;
+}
+
+/* HERO */
+.hero{
+  margin:20px 5%;
+  border-radius:15px;
+  min-height:280px;
+  padding:40px;
+  background:linear-gradient(110deg,#111827,#374151);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  overflow:hidden;
+}
+
+.hero-content{
+  max-width:600px;
+}
+
+.hero h2{
+  font-size:38px;
+  margin-bottom:15px;
+}
+
+.hero p{
+  color:#ddd;
+  line-height:1.7;
+  margin-bottom:22px;
+}
+
+.hero button{
+  background:#ff6b00;
+  color:#fff;
+  border:0;
+  padding:13px 25px;
+  border-radius:7px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.hero-art{
+  font-size:130px;
+  opacity:.9;
+}
+
+/* CATEGORIES */
+.section{
+  margin:25px 5%;
+}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.section-title h2{
+  font-size:23px;
+}
+
+.categories{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:15px;
+}
+
+.category{
+  background:#fff;
+  padding:20px 10px;
+  text-align:center;
+  border-radius:10px;
+  cursor:pointer;
+  border:1px solid #eee;
+  transition:.2s;
+}
+
+.category:hover{
+  transform:translateY(-3px);
+  box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.category-icon{
+  font-size:35px;
   margin-bottom:8px;
 }
 
-header p{
-  font-size:16px;
-}
-
-.container{
-  width:94%;
-  max-width:1100px;
-  margin:30px auto;
-}
-
-.container > h2{
-  font-size:28px;
-  margin-bottom:20px;
-}
-
+/* PRODUCTS */
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:22px;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
 }
 
-.card{
-  background:white;
-  border-radius:20px;
-  padding:18px;
-  text-align:center;
-  box-shadow:0 5px 20px rgba(0,0,0,.10);
+.product{
+  background:#fff;
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid #eee;
+  transition:.2s;
+  position:relative;
+}
+
+.product:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 25px rgba(0,0,0,.1);
 }
 
 .product-img{
   width:100%;
   height:210px;
-  object-fit:contain;
-  border-radius:14px;
-  background:#f7f7f7;
-  margin-bottom:15px;
+  object-fit:cover;
+  background:#f8f8f8;
 }
 
-.card h3{
-  font-size:24px;
-  margin:8px 0;
+.product-body{
+  padding:14px;
 }
 
-.owner{
-  color:#666;
-  font-size:17px;
+.product-name{
+  font-size:15px;
+  font-weight:600;
+  line-height:1.4;
+  min-height:42px;
+}
+
+.rating{
   margin:8px 0;
+  color:#f5a623;
+  font-size:13px;
 }
 
 .price{
-  color:#0878f9;
-  font-size:26px;
+  color:#f4511e;
+  font-size:22px;
   font-weight:bold;
-  margin:10px 0;
+}
+
+.old-price{
+  color:#999;
+  text-decoration:line-through;
+  font-size:13px;
+  margin-left:6px;
+}
+
+.owner{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:12px 0;
+  padding-top:10px;
+  border-top:1px solid #eee;
+}
+
+.owner img{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.owner-info{
+  font-size:11px;
+  color:#777;
+}
+
+.owner-info strong{
+  display:block;
+  color:#333;
+  font-size:12px;
 }
 
 .quantity{
-  margin:15px 0;
-  font-size:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:10px 0;
 }
 
-.quantity input{
-  width:90px;
-  padding:10px;
-  border:1px solid #ccc;
-  border-radius:10px;
+.qty-control{
+  display:flex;
+  align-items:center;
+  border:1px solid #ddd;
+  border-radius:5px;
+  overflow:hidden;
+}
+
+.qty-control button{
+  width:30px;
+  height:28px;
+  border:0;
+  background:#f5f5f5;
+  cursor:pointer;
+}
+
+.qty-control span{
+  width:35px;
   text-align:center;
-  font-size:18px;
+  font-size:13px;
 }
 
 .buttons{
   display:flex;
-  gap:12px;
-  justify-content:center;
+  gap:7px;
 }
 
-button{
-  border:0;
-  padding:13px 18px;
-  border-radius:12px;
-  color:white;
-  font-size:16px;
-  font-weight:bold;
+.add-cart,
+.order{
+  flex:1;
+  padding:10px 5px;
+  border-radius:5px;
   cursor:pointer;
+  font-size:12px;
+  font-weight:bold;
 }
 
-.cart{
-  background:#ffbd08;
-  color:#222;
+.add-cart{
+  background:#fff;
+  border:1px solid #ff6b00;
+  color:#ff6b00;
 }
 
 .order{
-  background:#159447;
+  background:#ff6b00;
+  border:1px solid #ff6b00;
+  color:white;
 }
 
-button:active{
-  transform:scale(.97);
+.add-cart:hover{
+  background:#fff3eb;
 }
 
-#cartBox{
-  display:none;
-  position:fixed;
+.order:hover{
+  background:#e85d00;
+}
+
+/* BADGE */
+.badge{
+  position:absolute;
+  top:10px;
   left:10px;
-  right:10px;
-  bottom:15px;
-  background:white;
-  padding:18px;
-  border-radius:18px;
-  box-shadow:0 5px 30px rgba(0,0,0,.25);
-  z-index:10;
+  background:#ff3b30;
+  color:#fff;
+  padding:5px 8px;
+  font-size:11px;
+  border-radius:4px;
 }
 
-#cartBox h3{
-  margin-bottom:10px;
-}
-
-#cartItems{
-  margin-bottom:10px;
-}
-
-.whatsapp{
-  display:block;
-  background:#25D366;
+/* FOOTER */
+.footer{
+  background:#111827;
   color:white;
-  text-decoration:none;
-  text-align:center;
-  padding:13px;
-  border-radius:12px;
-  font-weight:bold;
+  margin-top:50px;
+  padding:45px 5% 20px;
 }
 
-footer{
-  margin-top:40px;
-  background:#222;
-  color:white;
-  text-align:center;
-  padding:25px 10px;
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:35px;
 }
 
-@media(max-width:500px){
-  header h1{
-    font-size:25px;
+.footer h3{
+  margin-bottom:15px;
+}
+
+.footer p,
+.footer li{
+  color:#cbd5e1;
+  font-size:13px;
+  line-height:2;
+}
+
+.footer ul{
+  list-style:none;
+}
+
+.copyright{
+  border-top:1px solid #374151;
+  margin-top:30px;
+  padding-top:18px;
+  text-align:center;
+  color:#aaa;
+  font-size:12px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .products{
+    grid-template-columns:repeat(3,1fr);
   }
 
-  .container > h2{
-    font-size:24px;
+  .categories{
+    grid-template-columns:repeat(3,1fr);
   }
 
-  .card h3{
-    font-size:21px;
+  .hero-art{
+    font-size:80px;
+  }
+}
+
+@media(max-width:650px){
+  .topbar{
+    display:none;
+  }
+
+  .header{
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  .logo{
+    min-width:auto;
+    flex:1;
+  }
+
+  .logo-text h1{
+    font-size:17px;
+  }
+
+  .search{
+    order:3;
+    flex-basis:100%;
+  }
+
+  .hero{
+    padding:25px;
+    min-height:230px;
+  }
+
+  .hero h2{
+    font-size:27px;
+  }
+
+  .hero-art{
+    display:none;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .product-img{
+    height:155px;
+  }
+
+  .product-body{
+    padding:10px;
+  }
+
+  .price{
+    font-size:18px;
   }
 
   .buttons{
     flex-direction:column;
   }
 
-  button{
-    width:100%;
+  .categories{
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+  }
+
+  .category{
+    padding:13px 5px;
+    font-size:12px;
+  }
+
+  .category-icon{
+    font-size:25px;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
   }
 }
 </style>
@@ -195,235 +525,564 @@ footer{
 
 <body>
 
-<header>
-  <h1>School Project BD</h1>
-  <p>ইলেকট্রনিক্স ও প্রজেক্ট সামগ্রীর অনলাইন শপ</p>
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>Welcome to School Project BD</span>
+  <span>Help Center | Contact Us</span>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+
+  <div class="logo">
+    <div class="logo-icon">SP</div>
+    <div class="logo-text">
+      <h1>School Project BD</h1>
+      <p>Electronics Marketplace</p>
+    </div>
+  </div>
+
+  <div class="search">
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="Search for electronics, components..."
+      onkeyup="searchProducts()"
+    >
+    <button>🔍</button>
+  </div>
+
+  <div class="cart" onclick="showCart()">
+    🛒
+    <span class="cart-count" id="cartCount">0</span>
+  </div>
+
 </header>
 
-<div class="container">
+<!-- NAVIGATION -->
+<nav class="nav">
+  <span onclick="filterCategory('all')">Home</span>
+  <span onclick="filterCategory('Arduino')">Arduino</span>
+  <span onclick="filterCategory('LED')">LED & Lighting</span>
+  <span onclick="filterCategory('Sensor')">Sensors</span>
+  <span onclick="filterCategory('Component')">Components</span>
+  <span onclick="filterCategory('Wire')">Wire & Cable</span>
+  <span onclick="filterCategory('Battery')">Battery</span>
+</nav>
 
-<h2>আমাদের পণ্য</h2>
+<!-- HERO -->
+<section class="hero">
 
-<div class="products">
+  <div class="hero-content">
+    <h2>Build Your Project<br>With Better Electronics</h2>
 
-<!-- Arduino -->
-<div class="card">
-  <img class="product-img"
-       src="https://upload.wikimedia.org/wikipedia/commons/3/38/Arduino_Uno_-_R3.jpg"
-       alt="Arduino UNO">
+    <p>
+      Quality electronic components, modules and project materials
+      at affordable prices. Order easily from School Project BD.
+    </p>
 
-  <h3>Arduino UNO</h3>
-  <p class="owner">Owner: School Project BD</p>
-  <p class="price">৳ 450</p>
-
-  <div class="quantity">
-    পরিমাণ:
-    <input type="number" id="qty1" value="1" min="1">
-  </div>
-
-  <div class="buttons">
-    <button class="cart" onclick="addCart('Arduino UNO',450,'qty1')">
-      🛒 Add to Cart
-    </button>
-
-    <button class="order" onclick="orderNow('Arduino UNO',450,'qty1')">
-      🛍️ Order Now
+    <button onclick="document.getElementById('productsSection').scrollIntoView()">
+      Shop Now →
     </button>
   </div>
-</div>
 
+  <div class="hero-art">⚡🔧</div>
 
-<!-- LED -->
-<div class="card">
-  <img class="product-img"
-       src="https://upload.wikimedia.org/wikipedia/commons/1/1b/LEDs.jpg"
-       alt="LED Light">
+</section>
 
-  <h3>LED Light</h3>
-  <p class="owner">Owner: School Project BD</p>
-  <p class="price">৳ 20</p>
+<!-- CATEGORIES -->
+<section class="section">
 
-  <div class="quantity">
-    পরিমাণ:
-    <input type="number" id="qty2" value="1" min="1">
+  <div class="section-title">
+    <h2>Categories</h2>
   </div>
 
-  <div class="buttons">
-    <button class="cart" onclick="addCart('LED Light',20,'qty2')">
-      🛒 Add to Cart
-    </button>
+  <div class="categories">
 
-    <button class="order" onclick="orderNow('LED Light',20,'qty2')">
-      🛍️ Order Now
-    </button>
-  </div>
-</div>
+    <div class="category" onclick="filterCategory('Arduino')">
+      <div class="category-icon">🧠</div>
+      Arduino
+    </div>
 
+    <div class="category" onclick="filterCategory('LED')">
+      <div class="category-icon">💡</div>
+      LED & Lighting
+    </div>
 
-<!-- Ultrasonic Sensor -->
-<div class="card">
-  <img class="product-img"
-       src="https://upload.wikimedia.org/wikipedia/commons/4/4b/HC-SR04_Ultrasonic_Sensor.jpg"
-       alt="Ultrasonic Sensor">
+    <div class="category" onclick="filterCategory('Sensor')">
+      <div class="category-icon">📡</div>
+      Sensors
+    </div>
 
-  <h3>Ultrasonic Sensor</h3>
-  <p class="owner">Owner: School Project BD</p>
-  <p class="price">৳ 120</p>
+    <div class="category" onclick="filterCategory('Component')">
+      <div class="category-icon">🔌</div>
+      Components
+    </div>
 
-  <div class="quantity">
-    পরিমাণ:
-    <input type="number" id="qty3" value="1" min="1">
-  </div>
+    <div class="category" onclick="filterCategory('Wire')">
+      <div class="category-icon">🔗</div>
+      Wire & Cable
+    </div>
 
-  <div class="buttons">
-    <button class="cart" onclick="addCart('Ultrasonic Sensor',120,'qty3')">
-      🛒 Add to Cart
-    </button>
+    <div class="category" onclick="filterCategory('Battery')">
+      <div class="category-icon">🔋</div>
+      Battery
+    </div>
 
-    <button class="order" onclick="orderNow('Ultrasonic Sensor',120,'qty3')">
-      🛍️ Order Now
-    </button>
-  </div>
-</div>
-
-
-<!-- Jumper Wire -->
-<div class="card">
-  <img class="product-img"
-       src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Jumper_wires.jpg"
-       alt="Jumper Wire">
-
-  <h3>Jumper Wire</h3>
-  <p class="owner">Owner: School Project BD</p>
-  <p class="price">৳ 80</p>
-
-  <div class="quantity">
-    পরিমাণ:
-    <input type="number" id="qty4" value="1" min="1">
   </div>
 
-  <div class="buttons">
-    <button class="cart" onclick="addCart('Jumper Wire',80,'qty4')">
-      🛒 Add to Cart
-    </button>
+</section>
 
-    <button class="order" onclick="orderNow('Jumper Wire',80,'qty4')">
-      🛍️ Order Now
-    </button>
+<!-- PRODUCTS -->
+<section class="section" id="productsSection">
+
+  <div class="section-title">
+    <h2>Popular Products</h2>
+    <span id="resultText"></span>
   </div>
-</div>
 
-</div>
-</div>
+  <div class="products" id="productGrid"></div>
 
+</section>
 
-<!-- Cart -->
-<div id="cartBox">
-  <h3>🛒 আপনার Cart</h3>
-  <div id="cartItems">Cart খালি।</div>
+<!-- FOOTER -->
+<footer class="footer">
 
-  <a class="whatsapp" id="whatsappLink" href="#" target="_blank">
-    WhatsApp-এ অর্ডার করুন
-  </a>
-</div>
+  <div class="footer-grid">
 
+    <div>
+      <h3>School Project BD</h3>
+      <p>
+        Your online destination for electronic components,
+        project materials and educational electronics.
+      </p>
+    </div>
 
-<footer>
-  <p>© 2026 School Project BD</p>
-  <p>ইলেকট্রনিক্স ও প্রজেক্ট সামগ্রী</p>
+    <div>
+      <h3>Customer Care</h3>
+      <ul>
+        <li>Help Center</li>
+        <li>How to Order</li>
+        <li>Return Policy</li>
+        <li>Contact Us</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Categories</h3>
+      <ul>
+        <li>Arduino</li>
+        <li>Sensors</li>
+        <li>LED</li>
+        <li>Components</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Contact</h3>
+      <ul>
+        <li>📱 WhatsApp</li>
+        <li>📧 Email</li>
+        <li>📍 Bangladesh</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="copyright">
+    © 2026 School Project BD. All Rights Reserved.
+  </div>
+
 </footer>
 
 
 <script>
 
-let cart=[];
+/*
+====================================================
+PRODUCT DATABASE
+====================================================
 
-/* Add to Cart */
-function addCart(name,price,qtyId){
+নতুন product যোগ করতে নিচের মতো আরেকটি { } block
+copy করে products-এর ভিতরে বসাবে।
 
-  let qty=parseInt(document.getElementById(qtyId).value);
+image = product-এর ছবি
+ownerPhoto = owner-এর ছোট ছবি
+price = বর্তমান দাম
+oldPrice = আগের দাম
+*/
 
-  if(qty<1) qty=1;
+const products = [
 
-  cart.push({
-    name:name,
-    price:price,
-    qty:qty
+  {
+    name:"Arduino UNO R3 Development Board",
+    category:"Arduino",
+    price:850,
+    oldPrice:950,
+    image:"https://images.unsplash.com/photo-1553406830-ef2513450d76?auto=format&fit=crop&w=800&q=80",
+    owner:"School Project BD",
+    ownerPhoto:"https://i.pravatar.cc/100?img=12"
+  },
+
+  {
+    name:"5mm LED Light - Single Piece",
+    category:"LED",
+    price:5,
+    oldPrice:8,
+    image:"https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=800&q=80",
+    owner:"Electro Store",
+    ownerPhoto:"https://i.pravatar.cc/100?img=13"
+  },
+
+  {
+    name:"HC-SR04 Ultrasonic Sensor",
+    category:"Sensor",
+    price:120,
+    oldPrice:150,
+    image:"https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+    owner:"Tech Point BD",
+    ownerPhoto:"https://i.pravatar.cc/100?img=14"
+  },
+
+  {
+    name:"Electronic Resistor 1/4W - Per Piece",
+    category:"Component",
+    price:2,
+    oldPrice:3,
+    image:"https://images.unsplash.com/photo-1597423244037-9f7e6b7a5e9c?auto=format&fit=crop&w=800&q=80",
+    owner:"Component House",
+    ownerPhoto:"https://i.pravatar.cc/100?img=15"
+  },
+
+  {
+    name:"Jumper Wire Male to Male - Pack",
+    category:"Wire",
+    price:80,
+    oldPrice:100,
+    image:"https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=800&q=80",
+    owner:"Project Zone",
+    ownerPhoto:"https://i.pravatar.cc/100?img=16"
+  },
+
+  {
+    name:"9V Rechargeable Battery",
+    category:"Battery",
+    price:350,
+    oldPrice:400,
+    image:"https://images.unsplash.com/photo-1609592424574-9d2c7c4e4e0c?auto=format&fit=crop&w=800&q=80",
+    owner:"Power BD",
+    ownerPhoto:"https://i.pravatar.cc/100?img=17"
+  },
+
+  {
+    name:"Mini Breadboard 400 Point",
+    category:"Component",
+    price:70,
+    oldPrice:90,
+    image:"https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+    owner:"School Project BD",
+    ownerPhoto:"https://i.pravatar.cc/100?img=12"
+  },
+
+  {
+    name:"ESP32 WiFi Development Board",
+    category:"Arduino",
+    price:650,
+    oldPrice:750,
+    image:"https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
+    owner:"Smart Tech BD",
+    ownerPhoto:"https://i.pravatar.cc/100?img=18"
+  },
+
+  {
+    name:"RGB LED Module",
+    category:"LED",
+    price:25,
+    oldPrice:35,
+    image:"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80",
+    owner:"LED World",
+    ownerPhoto:"https://i.pravatar.cc/100?img=19"
+  },
+
+  {
+    name:"PIR Motion Sensor Module",
+    category:"Sensor",
+    price:90,
+    oldPrice:120,
+    image:"https://images.unsplash.com/photo-1555664424-778a6902201f?auto=format&fit=crop&w=800&q=80",
+    owner:"Tech Point BD",
+    ownerPhoto:"https://i.pravatar.cc/100?img=14"
+  },
+
+  {
+    name:"Capacitor 100uF - Per Piece",
+    category:"Component",
+    price:10,
+    oldPrice:15,
+    image:"https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+    owner:"Component House",
+    ownerPhoto:"https://i.pravatar.cc/100?img=15"
+  },
+
+  {
+    name:"USB Type-C Cable",
+    category:"Wire",
+    price:120,
+    oldPrice:150,
+    image:"https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80",
+    owner:"Cable House",
+    ownerPhoto:"https://i.pravatar.cc/100?img=20"
+  }
+
+];
+
+
+let cartCount = 0;
+
+
+/* SHOW PRODUCTS */
+
+function displayProducts(list){
+
+  const grid = document.getElementById("productGrid");
+
+  grid.innerHTML = "";
+
+  if(list.length === 0){
+
+    grid.innerHTML =
+      "<p style='grid-column:1/-1;text-align:center;padding:40px'>No products found.</p>";
+
+    return;
+  }
+
+  list.forEach((product,index)=>{
+
+    const card = document.createElement("div");
+
+    card.className = "product";
+
+    card.innerHTML = `
+
+      <span class="badge">New</span>
+
+      <img
+        class="product-img"
+        src="${product.image}"
+        alt="${product.name}"
+        onerror="this.src='https://via.placeholder.com/800x600?text=Product+Image'"
+      >
+
+      <div class="product-body">
+
+        <div class="product-name">
+          ${product.name}
+        </div>
+
+        <div class="rating">
+          ★★★★★ <span style="color:#999">(4.8)</span>
+        </div>
+
+        <div>
+          <span class="price">৳${product.price}</span>
+          <span class="old-price">৳${product.oldPrice}</span>
+        </div>
+
+        <div class="owner">
+
+          <img
+            src="${product.ownerPhoto}"
+            alt="${product.owner}"
+          >
+
+          <div class="owner-info">
+            Seller / Owner
+            <strong>${product.owner}</strong>
+          </div>
+
+        </div>
+
+        <div class="quantity">
+
+          <span style="font-size:12px;color:#777">
+            Quantity
+          </span>
+
+          <div class="qty-control">
+
+            <button onclick="changeQty(${index},-1)">
+              −
+            </button>
+
+            <span id="qty-${index}">
+              1
+            </span>
+
+            <button onclick="changeQty(${index},1)">
+              +
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="buttons">
+
+          <button
+            class="add-cart"
+            onclick="addToCart()"
+          >
+            🛒 Add to Cart
+          </button>
+
+          <button
+            class="order"
+            onclick="orderProduct('${product.name}',${product.price},${index})"
+          >
+            ⚡ Order Now
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+    grid.appendChild(card);
+
   });
 
-  updateCart();
-
-  alert(name+" Cart-এ যোগ করা হয়েছে।");
 }
 
 
-/* Update Cart */
-function updateCart(){
+/* QUANTITY */
 
-  let box=document.getElementById("cartBox");
-  let items=document.getElementById("cartItems");
+const quantities = {};
 
-  box.style.display="block";
+function changeQty(index,change){
 
-  let total=0;
-  let html="";
+  if(!quantities[index]){
+    quantities[index] = 1;
+  }
 
-  cart.forEach(function(item){
+  quantities[index] += change;
 
-    let subtotal=item.price*item.qty;
-    total+=subtotal;
+  if(quantities[index] < 1){
+    quantities[index] = 1;
+  }
 
-    html +=
-      "<p><b>"+item.name+"</b> × "+item.qty+
-      " = ৳ "+subtotal+"</p>";
-  });
+  const element = document.getElementById("qty-"+index);
 
-  html += "<hr><p><b>মোট: ৳ "+total+"</b></p>";
+  if(element){
+    element.innerText = quantities[index];
+  }
 
-  items.innerHTML=html;
-
-  let message="School Project BD Order%0A%0A";
-
-  cart.forEach(function(item){
-    message +=
-      item.name+" × "+item.qty+
-      " = ৳ "+(item.price*item.qty)+"%0A";
-  });
-
-  message += "%0Aমোট = ৳ "+total;
-
-  /* এখানে নিজের WhatsApp নম্বর বসাবে */
-  let phone="8801XXXXXXXXX";
-
-  document.getElementById("whatsappLink").href=
-    "https://wa.me/"+phone+"?text="+message;
 }
 
 
-/* Order Now */
-function orderNow(name,price,qtyId){
+/* ADD CART */
 
-  let qty=parseInt(document.getElementById(qtyId).value);
+function addToCart(){
 
-  if(qty<1) qty=1;
+  cartCount++;
 
-  let total=price*qty;
+  document.getElementById("cartCount").innerText = cartCount;
 
-  let message=
-    "School Project BD Order%0A%0A"+
-    "পণ্য: "+name+"%0A"+
-    "পরিমাণ: "+qty+"%0A"+
-    "দাম: ৳ "+price+"%0A"+
-    "মোট: ৳ "+total;
+  alert("Product added to cart successfully! 🛒");
 
-  /* এখানে নিজের WhatsApp নম্বর বসাবে */
-  let phone="8801804407566
+}
+
+
+/* ORDER */
+
+function orderProduct(name,price,index){
+
+  const qty = quantities[index] || 1;
+
+  const total = price * qty;
+
+  const message =
+    "Hello School Project BD,%0A%0A" +
+    "I want to order:%0A" +
+    name + "%0A" +
+    "Quantity: " + qty + "%0A" +
+    "Total: ৳" + total;
+
+  /*
+  ==========================================
+  IMPORTANT:
+  এখানে তোমার WhatsApp number বসাবে।
+  ==========================================
+  */
+
+  const whatsappNumber = "8801804407566";
 
   window.open(
-    "https://wa.me/"+phone+"?text="+message,
+    "https://wa.me/" + whatsappNumber + "?text=" + message,
     "_blank"
   );
+
 }
+
+
+/* SEARCH */
+
+function searchProducts(){
+
+  const text =
+    document.getElementById("searchInput")
+    .value
+    .toLowerCase();
+
+  const result = products.filter(product =>
+    product.name.toLowerCase().includes(text)
+  );
+
+  displayProducts(result);
+
+}
+
+
+/* CATEGORY FILTER */
+
+function filterCategory(category){
+
+  if(category === "all"){
+
+    displayProducts(products);
+
+    return;
+  }
+
+  const result = products.filter(product =>
+    product.category === category
+  );
+
+  displayProducts(result);
+
+  document.getElementById("productsSection")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
+
+/* CART */
+
+function showCart(){
+
+  alert(
+    "Your cart currently has " +
+    cartCount +
+    " item(s)."
+  );
+
+}
+
+
+/* INITIAL LOAD */
+
+displayProducts(products);
 
 </script>
 
