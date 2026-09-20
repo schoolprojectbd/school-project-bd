@@ -1,204 +1,266 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>School Project BD</title>
-
-<style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>School Project BD | Electronics Marketplace</title><style>
 *{
-  box-sizing:border-box;
   margin:0;
   padding:0;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
   background:#f5f5f5;
   color:#222;
 }
 
-header{
-  background:#ff6801;
-  color:white;
-  padding:14px 5%;
+.topbar{
+  background:#111827;
+  color:#fff;
+  font-size:13px;
+  padding:8px 5%;
+  display:flex;
+  justify-content:space-between;
+}
+
+.header{
+  background:#fff;
+  padding:15px 5%;
+  display:flex;
+  align-items:center;
+  gap:25px;
   position:sticky;
   top:0;
   z-index:1000;
-  box-shadow:0 2px 8px #999;
-}
-
-.nav{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  gap:20px;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
 .logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:220px;
+}
+
+.logo-icon{
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#ff6b00,#ff9f43);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   font-size:25px;
   font-weight:bold;
-  white-space:nowrap;
+}
+
+.logo-text h1{
+  font-size:21px;
+  color:#111827;
+}
+
+.logo-text p{
+  font-size:11px;
+  color:#777;
 }
 
 .search{
   flex:1;
   display:flex;
-  background:white;
-  border-radius:6px;
+  background:#f1f3f5;
+  border-radius:8px;
   overflow:hidden;
+  border:1px solid #ddd;
 }
 
 .search input{
-  width:100%;
+  flex:1;
   border:0;
   outline:0;
-  padding:13px;
+  padding:14px;
   font-size:15px;
+  background:transparent;
 }
 
 .search button{
+  width:60px;
   border:0;
-  background:#fff;
-  padding:0 18px;
+  background:#ff6b00;
+  color:white;
   font-size:20px;
   cursor:pointer;
 }
 
-.cart-btn{
-  background:#fff;
-  color:#ff6801;
-  border:0;
-  padding:11px 15px;
-  border-radius:6px;
+.cart{
+  position:relative;
+  font-size:27px;
   cursor:pointer;
-  font-weight:bold;
 }
 
-/* HERO */
+.cart-count{
+  position:absolute;
+  top:-8px;
+  right:-10px;
+  background:#ff3b30;
+  color:#fff;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  font-size:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.nav{
+  background:#fff;
+  border-top:1px solid #eee;
+  border-bottom:1px solid #eee;
+  padding:11px 5%;
+  display:flex;
+  gap:28px;
+  overflow:auto;
+}
+
+.nav span{
+  white-space:nowrap;
+  cursor:pointer;
+  color:#444;
+  font-size:14px;
+}
+
+.nav span:hover{
+  color:#ff6b00;
+}
+
 .hero{
-  max-width:1200px;
-  margin:20px auto;
-  padding:55px 7%;
-  border-radius:14px;
+  margin:20px 5%;
+  border-radius:15px;
+  min-height:280px;
+  padding:40px;
+  background:linear-gradient(110deg,#111827,#374151);
   color:white;
-  background:
-    linear-gradient(110deg,#ff6801,#ff9f43);
-  box-shadow:0 5px 18px #ccc;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  overflow:hidden;
 }
 
-.hero h1{
-  font-size:42px;
-  margin-bottom:12px;
+.hero-content{
+  max-width:600px;
+}
+
+.hero h2{
+  font-size:38px;
+  margin-bottom:15px;
 }
 
 .hero p{
-  font-size:18px;
+  color:#ddd;
+  line-height:1.7;
   margin-bottom:22px;
 }
 
 .hero button{
+  background:#ff6b00;
+  color:#fff;
   border:0;
-  background:white;
-  color:#ff6801;
   padding:13px 25px;
-  border-radius:6px;
+  border-radius:7px;
+  cursor:pointer;
   font-weight:bold;
-  cursor:pointer;
 }
 
-/* CATEGORIES */
-.categories{
-  max-width:1200px;
-  margin:25px auto;
-  padding:0 15px;
+.hero-art{
+  font-size:130px;
+  opacity:.9;
 }
 
-.categories h2{
-  margin-bottom:15px;
+.section{
+  margin:25px 5%;
 }
 
-.category-list{
+.section-title{
   display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
-.category-list button{
-  border:0;
-  background:white;
-  padding:11px 17px;
-  border-radius:20px;
-  cursor:pointer;
-  box-shadow:0 2px 7px #ddd;
-}
-
-.category-list button:hover{
-  background:#ff6801;
-  color:white;
-}
-
-/* PRODUCTS */
-.products{
-  max-width:1200px;
-  margin:30px auto;
-  padding:0 15px;
-}
-
-.products h2{
+  justify-content:space-between;
+  align-items:center;
   margin-bottom:18px;
 }
 
-.grid{
+.section-title h2{
+  font-size:23px;
+}
+
+.categories{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:15px;
+}
+
+.category{
+  background:#fff;
+  padding:20px 10px;
+  text-align:center;
+  border-radius:10px;
+  cursor:pointer;
+  border:1px solid #eee;
+  transition:.2s;
+}
+
+.category:hover{
+  transform:translateY(-3px);
+  box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.category-icon{
+  font-size:35px;
+  margin-bottom:8px;
+}
+
+.products{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:18px;
 }
 
-.card{
-  background:white;
+.product{
+  background:#fff;
   border-radius:10px;
   overflow:hidden;
-  box-shadow:0 2px 10px #ddd;
+  border:1px solid #eee;
   transition:.2s;
+  position:relative;
 }
 
-.card:hover{
+.product:hover{
   transform:translateY(-4px);
-  box-shadow:0 7px 18px #ccc;
+  box-shadow:0 8px 25px rgba(0,0,0,.1);
 }
 
 .product-img{
   width:100%;
   height:210px;
-  background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:15px;
+  object-fit:cover;
+  background:#f8f8f8;
 }
 
-.product-img img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
+.product-body{
+  padding:14px;
 }
 
-.info{
-  padding:15px;
-}
-
-.info h3{
-  font-size:17px;
-  min-height:42px;
+.product-name{
+  font-size:15px;
+  font-weight:600;
+  line-height:1.4;
+  margin-bottom:8px;
 }
 
 .price{
-  color:#f45100;
-  font-size:21px;
+  color:#ff6b00;
+  font-size:20px;
   font-weight:bold;
-  margin:10px 0;
+  margin-bottom:12px;
 }
 
 .buttons{
@@ -208,629 +270,460 @@ header{
 
 .buttons button{
   flex:1;
+  border:0;
   padding:10px 5px;
-  border-radius:5px;
+  border-radius:6px;
   cursor:pointer;
   font-weight:bold;
-}
-
-.buy{
-  background:#ff6801;
-  color:white;
-  border:1px solid #ff6801;
 }
 
 .add{
-  background:white;
-  color:#ff6801;
-  border:1px solid #ff6801;
-}
-
-/* FOOTER */
-footer{
-  margin-top:50px;
-  background:#222;
+  background:#111827;
   color:white;
-  text-align:center;
-  padding:30px 15px;
 }
 
-footer h2{
-  color:#ff6801;
-  margin-bottom:8px;
+.order{
+  background:#ff6b00;
+  color:white;
 }
 
-/* CART */
-.cart-panel{
-  position:fixed;
-  right:-400px;
-  top:0;
-  width:360px;
-  max-width:92%;
-  height:100%;
+.owner{
   background:white;
-  z-index:2000;
-  box-shadow:-5px 0 20px #777;
-  padding:20px;
-  transition:.3s;
-  overflow:auto;
-}
-
-.cart-panel.open{
-  right:0;
-}
-
-.cart-head{
+  margin:30px 5%;
+  padding:25px;
+  border-radius:15px;
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  margin-bottom:20px;
+  gap:20px;
+  border:1px solid #eee;
 }
 
-.close{
-  border:0;
-  background:#eee;
-  padding:8px 12px;
-  cursor:pointer;
+.owner img{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid #ff6b00;
 }
 
-.cart-item{
-  border-bottom:1px solid #ddd;
-  padding:12px 0;
-}
-
-.cart-item button{
-  margin-top:7px;
-  border:0;
-  background:#e53935;
-  color:white;
-  padding:6px 10px;
-  cursor:pointer;
-  border-radius:4px;
-}
-
-.total{
-  font-size:21px;
-  font-weight:bold;
-  margin:20px 0;
+.owner h2{
+  margin-bottom:7px;
 }
 
 .whatsapp{
-  width:100%;
-  border:0;
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 18px;
   background:#25D366;
   color:white;
-  padding:13px;
-  border-radius:6px;
+  text-decoration:none;
+  border-radius:7px;
   font-weight:bold;
-  cursor:pointer;
 }
 
-/* MOBILE */
+footer{
+  background:#111827;
+  color:white;
+  text-align:center;
+  padding:25px;
+  margin-top:40px;
+}
+
 @media(max-width:900px){
-  .grid{
+  .categories{
     grid-template-columns:repeat(3,1fr);
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero-art{
+    display:none;
+  }
+
+  .logo{
+    min-width:auto;
   }
 }
 
-@media(max-width:650px){
-  .nav{
+@media(max-width:600px){
+  .topbar{
+    font-size:11px;
+  }
+
+  .header{
     flex-wrap:wrap;
+    gap:12px;
   }
 
   .logo{
     width:100%;
-    text-align:center;
   }
 
   .search{
-    order:2;
-  }
-
-  .cart-btn{
+    width:100%;
     order:3;
   }
 
-  .hero{
-    margin:12px;
-    padding:35px 22px;
-  }
-
-  .hero h1{
-    font-size:30px;
-  }
-
-  .grid{
+  .categories{
     grid-template-columns:repeat(2,1fr);
-    gap:12px;
+  }
+
+  .products{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
   }
 
   .product-img{
-    height:155px;
+    height:150px;
   }
 
-  .info{
-    padding:10px;
+  .hero{
+    padding:25px;
+    min-height:230px;
   }
 
-  .info h3{
-    font-size:14px;
+  .hero h2{
+    font-size:28px;
   }
 
-  .price{
-    font-size:18px;
-  }
-
-  .buttons{
+  .owner{
     flex-direction:column;
+    text-align:center;
   }
 }
-
-@media(max-width:380px){
-  .grid{
-    grid-template-columns:1fr;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<header>
-  <div class="nav">
-
-    <div class="logo">
-      School Project BD
+</style></head><body><div class="topbar">
+  <span>Welcome to School Project BD</span>
+  <span>Electronics Marketplace</span>
+</div><header class="header">  <div class="logo">
+    <div class="logo-icon">SP</div>
+    <div class="logo-text">
+      <h1>School Project BD</h1>
+      <p>Electronics Marketplace</p>
     </div>
+  </div>  <div class="search">
+    <input type="text" id="searchInput" placeholder="Search products...">
+    <button onclick="searchProducts()">🔍</button>
+  </div>  <div class="cart">
+    🛒
+    <span class="cart-count" id="cartCount">0</span>
+  </div></header><nav class="nav">
+  <span onclick="showAll()">All Products</span>
+  <span onclick="filterCategory('Arduino')">Arduino</span>
+  <span onclick="filterCategory('Sensor')">Sensors</span>
+  <span onclick="filterCategory('Motor')">Motors</span>
+  <span onclick="filterCategory('Drone')">Drone Parts</span>
+  <span onclick="filterCategory('Circuit')">Circuit</span>
+</nav><section class="hero">  <div class="hero-content">
+    <h2>Build Your Project With Us</h2><p>
+  Find Arduino, sensors, motors, drone parts,
+  mobile motherboard circuits and other electronic
+  project components at School Project BD.
+</p>
 
-    <div class="search">
-      <input
-        type="text"
-        id="search"
-        placeholder="Search products..."
-        onkeyup="searchProducts()"
-      >
-      <button>🔍</button>
+<button onclick="document.getElementById('products').scrollIntoView()">
+  Shop Now
+</button>
+
+  </div>  <div class="hero-art">⚡</div></section><section class="section">  <div class="section-title">
+    <h2>Categories</h2>
+  </div>  <div class="categories"><div class="category" onclick="filterCategory('Arduino')">
+  <div class="category-icon">🔧</div>
+  <div>Arduino</div>
+</div>
+
+<div class="category" onclick="filterCategory('Sensor')">
+  <div class="category-icon">📡</div>
+  <div>Sensors</div>
+</div>
+
+<div class="category" onclick="filterCategory('Motor')">
+  <div class="category-icon">⚙️</div>
+  <div>Motors</div>
+</div>
+
+<div class="category" onclick="filterCategory('Drone')">
+  <div class="category-icon">🚁</div>
+  <div>Drone Parts</div>
+</div>
+
+<div class="category" onclick="filterCategory('Circuit')">
+  <div class="category-icon">🔌</div>
+  <div>Circuits</div>
+</div>
+
+<div class="category" onclick="showAll()">
+  <div class="category-icon">📦</div>
+  <div>All Parts</div>
+</div>
+
+  </div></section><section class="section" id="products">  <div class="section-title">
+    <h2>Featured Products</h2>
+  </div>  <div class="products" id="productList"><div class="product" data-category="Arduino" data-name="Arduino Uno">
+  <img class="product-img" src="images/arduino.jpg" alt="Arduino Uno">
+
+  <div class="product-body">
+    <div class="product-name">Arduino Uno</div>
+    <div class="price">৳450</div>
+
+    <div class="buttons">
+      <button class="add" onclick="addToCart()">Add to Cart</button>
+
+      <button class="order" onclick="orderProduct('Arduino Uno')">
+        Order Now
+      </button>
     </div>
-
-    <button class="cart-btn" onclick="openCart()">
-      🛒 Cart <span id="cartCount">0</span>
-    </button>
-
   </div>
-</header>
-
-<section class="hero">
-  <h1>Build Your Project</h1>
-  <p>Electronics components for school projects, robotics and DIY.</p>
-  <button onclick="document.getElementById('products').scrollIntoView()">
-    Shop Now
-  </button>
-</section>
-
-<section class="categories">
-
-  <h2>Categories</h2>
-
-  <div class="category-list">
-    <button onclick="filterCategory('all')">All</button>
-    <button onclick="filterCategory('Arduino')">Arduino</button>
-    <button onclick="filterCategory('Sensor')">Sensors</button>
-    <button onclick="filterCategory('Motor')">Motors</button>
-    <button onclick="filterCategory('Board')">Boards</button>
-    <button onclick="filterCategory('Wire')">Wires</button>
-  </div>
-
-</section>
-
-<section class="products" id="products">
-
-  <h2>Popular Products</h2>
-
-  <div class="grid" id="productGrid">
-
-    <div class="card" data-category="Arduino" data-name="Arduino UNO R3">
-      <div class="product-img">
-        <img src="images/arduino-uno.jpg"
-             alt="Arduino UNO R3"
-             onerror="this.src='images/516.jpg'">
-      </div>
-
-      <div class="info">
-        <h3>Arduino UNO R3</h3>
-        <div class="price">৳ 750</div>
-
-        <div class="buttons">
-          <button class="buy" onclick="buyNow('Arduino UNO R3',750)">
-            Buy Now
-          </button>
-          <button class="add" onclick="addCart('Arduino UNO R3',750)">
-            Add to Cart
-          </button>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="card" data-category="Sensor" data-name="HC-SR04 Ultrasonic Sensor">
-      <div class="product-img">
-        <img src="images/ultrasonic.jpg"
-             alt="HC-SR04 Ultrasonic Sensor"
-             onerror="this.src='images/516.jpg'">
-      </div>
-
-      <div class="info">
-        <h3>HC-SR04 Ultrasonic Sensor</h3>
-        <div class="price">৳ 160</div>
-
-        <div class="buttons">
-          <button class="buy" onclick="buyNow('HC-SR04 Ultrasonic Sensor',160)">
-            Buy Now
-          </button>
-          <button class="add" onclick="addCart('HC-SR04 Ultrasonic Sensor',160)">
-            Add to Cart
-          </button>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="card" data-category="Board" data-name="ESP32 Development Board">
-      <div class="product-img">
-        <img src="images/esp32.jpg"
-             alt="ESP32 Development Board"
-             onerror="this.src='images/516.jpg'">
-      </div>
-
-      <div class="info">
-        <h3>ESP32 Development Board</h3>
-        <div class="price">৳ 550</div>
-
-        <div class="buttons">
-          <button class="buy" onclick="buyNow('ESP32 Development Board',550)">
-            Buy Now
-          </button>
-          <button class="add" onclick="addCart('ESP32 Development Board',550)">
-            Add to Cart
-          </button>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="card" data-category="Sensor" data-name="PIR Motion Sensor">
-      <div class="product-img">
-        <img src="images/pir-sensor.jpg"
-             alt="PIR Motion Sensor"
-             onerror="this.src='images/516.jpg'">
-      </div>
-
-      <div class="info">
-        <h3>PIR Motion Sensor</h3>
-        <div class="price">৳ 95</div>
-
-        <div class="buttons">
-          <button class="buy" onclick="buyNow('PIR Motion Sensor',95)">
-            Buy Now
-          </button>
-          <button class="add" onclick="addCart('PIR Motion Sensor',95)">
-            Add to Cart
-          </button>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="card" data-category="Motor" data-name="DC Motor">
-      <div class="product-img">
-        <img src="images/dc-motor.jpg"
-             alt="DC Motor"
-             onerror="this.src='images/516.jpg'">
-      </div>
-
-      <div class="info">
-        <h3>DC Motor</h3>
-        <div class="price">৳ 120</div>
-
-        <div class="buttons">
-          <button class="buy" onclick="buyNow('DC Motor',120)">
-            Buy Now
-          </button>
-          <button class="add" onclick="addCart('DC Motor',120)">
-            Add to Cart
-          </button>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="card" data-category="Wire" data-name="Jumper Wire">
-      <div class="product-img">
-        <img src="images/jumper-wire.jpg"
-             alt="Jumper Wire"
-             onerror="this.src='images/516.jpg'">
-      </div>
-
-      <div class="info">
-        <h3>Jumper Wire</h3>
-        <div class="price">৳ 80</div>
-
-        <div class="buttons">
-          <button class="buy" onclick="buyNow('Jumper Wire',80)">
-            Buy Now
-          </button>
-          <button class="add" onclick="addCart('Jumper Wire',80)">
-            Add to Cart
-          </button>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="card" data-category="Board" data-name="Breadboard">
-      <div class="product-img">
-        <img src="images/breadboard.jpg"
-             alt="Breadboard"
-             onerror="this.src='images/516.jpg'">
-      </div>
-
-      <div class="info">
-        <h3>Breadboard</h3>
-        <div class="price">৳ 150</div>
-
-        <div class="buttons">
-          <button class="buy" onclick="buyNow('Breadboard',150)">
-            Buy Now
-          </button>
-          <button class="add" onclick="addCart('Breadboard',150)">
-            Add to Cart
-          </button>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="card" data-category="Sensor" data-name="LED">
-      <div class="product-img">
-        <img src="images/led.jpg"
-             alt="LED"
-             onerror="this.src='images/516.jpg'">
-      </div>
-
-      <div class="info">
-        <h3>LED</h3>
-        <div class="price">৳ 10</div>
-
-        <div class="buttons">
-          <button class="buy" onclick="buyNow('LED',10)">
-            Buy Now
-          </button>
-          <button class="add" onclick="addCart('LED',10)">
-            Add to Cart
-          </button>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<footer>
-  <h2>School Project BD</h2>
-  <p>Electronics Components • School Projects • DIY</p>
-  <p style="margin-top:10px;">WhatsApp: 01804407566</p>
-</footer>
-
-
-<!-- CART -->
-<div class="cart-panel" id="cartPanel">
-
-  <div class="cart-head">
-    <h2>Your Cart</h2>
-    <button class="close" onclick="closeCart()">✕</button>
-  </div>
-
-  <div id="cartItems"></div>
-
-  <div class="total">
-    Total: ৳ <span id="cartTotal">0</span>
-  </div>
-
-  <button class="whatsapp" onclick="orderWhatsApp()">
-    Order Cart on WhatsApp
-  </button>
-
 </div>
 
 
-<script>
+<div class="product" data-category="Sensor" data-name="IR Sensor">
+  <img class="product-img" src="images/ir-sensor.jpg" alt="IR Sensor">
 
-let cart = [];
+  <div class="product-body">
+    <div class="product-name">IR Sensor</div>
+    <div class="price">৳120</div>
 
-const WHATSAPP = "8801804407566";
+    <div class="buttons">
+      <button class="add" onclick="addToCart()">Add to Cart</button>
+
+      <button class="order" onclick="orderProduct('IR Sensor')">
+        Order Now
+      </button>
+    </div>
+  </div>
+</div>
 
 
-function addCart(name, price){
+<div class="product" data-category="Motor" data-name="DC Motor">
+  <img class="product-img" src="images/dc-motor.jpg" alt="DC Motor">
 
-  cart.push({
-    name:name,
-    price:price
-  });
+  <div class="product-body">
+    <div class="product-name">DC Motor</div>
+    <div class="price">৳180</div>
 
-  updateCart();
+    <div class="buttons">
+      <button class="add" onclick="addToCart()">Add to Cart</button>
 
-  alert(name + " added to cart!");
+      <button class="order" onclick="orderProduct('DC Motor')">
+        Order Now
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="product" data-category="Drone" data-name="Drone Motor">
+  <img class="product-img" src="images/drone-motor.jpg" alt="Drone Motor">
+
+  <div class="product-body">
+    <div class="product-name">Drone Motor</div>
+    <div class="price">৳650</div>
+
+    <div class="buttons">
+      <button class="add" onclick="addToCart()">Add to Cart</button>
+
+      <button class="order" onclick="orderProduct('Drone Motor')">
+        Order Now
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="product" data-category="Motor" data-name="Gear Motor">
+  <img class="product-img" src="images/gear-motor.jpg" alt="Gear Motor">
+
+  <div class="product-body">
+    <div class="product-name">Gear Motor</div>
+    <div class="price">৳250</div>
+
+    <div class="buttons">
+      <button class="add" onclick="addToCart()">Add to Cart</button>
+
+      <button class="order" onclick="orderProduct('Gear Motor')">
+        Order Now
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="product" data-category="Circuit" data-name="Mobile Motherboard Circuit">
+  <img class="product-img" src="images/mobile-motherboard.jpg" alt="Mobile Motherboard">
+
+  <div class="product-body">
+    <div class="product-name">Mobile Motherboard Circuit</div>
+    <div class="price">৳850</div>
+
+    <div class="buttons">
+      <button class="add" onclick="addToCart()">Add to Cart</button>
+
+      <button class="order" onclick="orderProduct('Mobile Motherboard Circuit')">
+        Order Now
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="product" data-category="Sensor" data-name="Ultrasonic Sensor">
+  <img class="product-img" src="images/ultrasonic.jpg" alt="Ultrasonic Sensor">
+
+  <div class="product-body">
+    <div class="product-name">Ultrasonic Sensor</div>
+    <div class="price">৳150</div>
+
+    <div class="buttons">
+      <button class="add" onclick="addToCart()">Add to Cart</button>
+
+      <button class="order" onclick="orderProduct('Ultrasonic Sensor')">
+        Order Now
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="product" data-category="Motor" data-name="Dynamo Motor">
+  <img class="product-img" src="images/dynamo-motor.jpg" alt="Dynamo Motor">
+
+  <div class="product-body">
+    <div class="product-name">Dynamo Motor</div>
+    <div class="price">৳300</div>
+
+    <div class="buttons">
+      <button class="add" onclick="addToCart()">Add to Cart</button>
+
+      <button class="order" onclick="orderProduct('Dynamo Motor')">
+        Order Now
+      </button>
+    </div>
+  </div>
+</div>
+
+  </div></section><section class="owner">  <img src="images/owner.jpg" alt="Owner">  <div>
+    <h2>School Project BD</h2><p>
+  Electronics Project Parts & Components
+</p>
+
+<a
+  class="whatsapp"
+  href="https://wa.me/8801804407566"
+  target="_blank">
+  💬 WhatsApp: 01804407566
+</a>
+
+  </div></section><footer>
+  <p>© 2026 School Project BD. All Rights Reserved.</p>
+</footer><script>
+
+let cartCount = 0;
+
+function addToCart(){
+
+  cartCount++;
+
+  document.getElementById("cartCount").innerText = cartCount;
+
+  alert("Product added to cart!");
+
 }
 
 
-function buyNow(name, price){
+function orderProduct(productName){
+
+  const phone = "8801804407566";
 
   const message =
-    "Hello, I want to order:%0A%0A" +
-    "Product: " + name + "%0A" +
-    "Price: ৳" + price;
+    "Hello School Project BD, I want to order: " +
+    productName;
 
-  window.open(
-    "https://wa.me/" + WHATSAPP + "?text=" + message,
-    "_blank"
-  );
-}
-
-
-function updateCart(){
-
-  document.getElementById("cartCount").innerText = cart.length;
-
-  const items =
-    document.getElementById("cartItems");
-
-  items.innerHTML = "";
-
-  let total = 0;
-
-  cart.forEach((item,index)=>{
-
-    total += item.price;
-
-    const div = document.createElement("div");
-
-    div.className = "cart-item";
-
-    div.innerHTML =
-      "<b>" + item.name + "</b><br>" +
-      "৳ " + item.price +
-      "<br>" +
-      "<button onclick='removeCart(" + index + ")'>Remove</button>";
-
-    items.appendChild(div);
-
-  });
-
-  document.getElementById("cartTotal").innerText = total;
-}
-
-
-function removeCart(index){
-
-  cart.splice(index,1);
-
-  updateCart();
-}
-
-
-function openCart(){
-
-  document
-    .getElementById("cartPanel")
-    .classList.add("open");
-
-}
-
-
-function closeCart(){
-
-  document
-    .getElementById("cartPanel")
-    .classList.remove("open");
-
-}
-
-
-function orderWhatsApp(){
-
-  if(cart.length === 0){
-
-    alert("Your cart is empty.");
-
-    return;
-  }
-
-  let message =
-    "Hello, I want to order:%0A%0A";
-
-  let total = 0;
-
-  cart.forEach((item,i)=>{
-
-    message +=
-      (i+1) + ". " +
-      item.name +
-      " - ৳" +
-      item.price +
-      "%0A";
-
-    total += item.price;
-
-  });
-
-  message +=
-    "%0ATotal: ৳" +
-    total;
-
-  window.open(
+  const url =
     "https://wa.me/" +
-    WHATSAPP +
+    phone +
     "?text=" +
-    message,
-    "_blank"
-  );
+    encodeURIComponent(message);
 
-}
-
-
-function searchProducts(){
-
-  const value =
-    document
-      .getElementById("search")
-      .value
-      .toLowerCase();
-
-  document
-    .querySelectorAll(".card")
-    .forEach(card=>{
-
-      const name =
-        card
-          .dataset
-          .name
-          .toLowerCase();
-
-      card.style.display =
-        name.includes(value)
-        ? ""
-        : "none";
-
-    });
+  window.open(url, "_blank");
 
 }
 
 
 function filterCategory(category){
 
-  document
-    .querySelectorAll(".card")
-    .forEach(card=>{
+  const products =
+    document.querySelectorAll(".product");
 
-      if(category === "all"){
+  products.forEach(function(product){
 
-        card.style.display = "";
+    if(product.dataset.category === category){
 
-      }else{
+      product.style.display = "block";
 
-        card.style.display =
-          card.dataset.category === category
-          ? ""
-          : "none";
+    }else{
 
-      }
+      product.style.display = "none";
 
-    });
+    }
+
+  });
 
 }
 
-</script>
 
-</body>
+function showAll(){
+
+  const products =
+    document.querySelectorAll(".product");
+
+  products.forEach(function(product){
+
+    product.style.display = "block";
+
+  });
+
+}
+
+
+function searchProducts(){
+
+  const search =
+    document.getElementById("searchInput")
+    .value
+    .toLowerCase();
+
+  const products =
+    document.querySelectorAll(".product");
+
+  products.forEach(function(product){
+
+    const name =
+      product.dataset.name.toLowerCase();
+
+    if(name.includes(search)){
+
+      product.style.display = "block";
+
+    }else{
+
+      product.style.display = "none";
+
+    }
+
+  });
+
+}
+
+
+document
+.getElementById("searchInput")
+.addEventListener("keyup", function(){
+
+  searchProducts();
+
+});
+
+</script></body>
 </html>
