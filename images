@@ -1,0 +1,14 @@
+school-project-bd/
+│
+├── index.html
+│
+└── images/
+    ├── owner.jpg
+    ├── arduino.jpg
+    ├── ir-sensor.jpg
+    ├── dc-motor.jpg
+    ├── drone-motor.jpg
+    ├── gear-motor.jpg
+    ├── mobile-motherboard.jpg
+    ├── ultrasonic.jpg
+    └── dynamo-motor.jpg
