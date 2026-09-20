@@ -1,14 +1,3 @@
-school-project-bd
-│
-├── index.html
-│
-└── images
-    ├── owner.jpg
-    ├── arduino-uno.jpg
-    ├── led.jpg
-    ├── ultrasonic.jpg
-    ├── dc-motor.jpg
-    ├── esp32.jpg
-    ├── jumper-wire.jpg
-    ├── pir-sensor.jpg
-    └── breadboard.jpg
+<img src="images/owner.jpg">
+<img src="images/arduino-uno.jpg">
+<img src="images/led.jpg">
