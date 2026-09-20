@@ -1088,3 +1088,12 @@ displayProducts(products);
 
 </body>
 </html>
+
+const whatsappNumber = "8801804407566";
+
+function openWhatsApp(message = "আমি আপনার পণ্য সম্পর্কে জানতে চাই।") {
+    window.open(
+        "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message),
+        "_blank"
+    );
+}
