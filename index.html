@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School Project BD - Electronics Store</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+    font-family:Arial,"Noto Sans Bengali",sans-serif;
+    background:#f5f5f5;
+    color:#222;
+}
+
+button{cursor:pointer}
+
+.top{
+    background:#f85606;
+    color:white;
+    padding:7px 5%;
+    text-align:right;
+    font-size:13px;
+}
+
+.header{
+    background:white;
+    padding:14px 5%;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    position:sticky;
+    top:0;
+    z-index:50;
+    box-shadow:0 2px 8px #0002;
+}
+
+.logo{
+    color:#f57224;
+    font-size:24px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.search{
+    display:flex;
+    flex:1;
+    max-width:700px;
+    margin:auto;
+}
+
+.search input{
+    flex:1;
+    padding:13px;
+    border:2px solid #f57224;
+    border-right:0;
+    border-radius:6px 0 0 6px;
+    outline:none;
+    font-size:15px;
+}
+
+.search button{
+    border:0;
+    background:#f57224;
+    color:white;
+    padding:0 20px;
+    border-radius:0 6px 6px 0;
+}
+
+.cart-button{
+    background:white;
+    border:0;
+    font-size:27px;
+    position:relative;
+}
+
+.badge{
+    position:absolute;
+    top:-8px;
+    right:-8px;
+    background:red;
+    color:white;
+    border-radius:50%;
+    font-size:11px;
+    padding:4px 7px;
+}
+
+.nav{
+    background:white;
+    display:flex;
+    gap:8px;
+    padding:10px 5%;
+    overflow-x:auto;
+}
+
+.nav button{
+    border:0;
+    background:#eee;
+    padding:9px 15px;
+    border-radius:20px;
+    white-space:nowrap;
+}
+
+.nav button.active,
+.nav button:hover{
+    background:#f57224;
+    color:white;
+}
+
+/* =========================
+   TOP POSTER
+   তোমার ছবি: images/516.jpg
+   ========================= */
+
+.poster{
+    margin:18px 5%;
+    min-height:330px;
+    border-radius:14px;
+    overflow:hidden;
+
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.78),
+            rgba(0,0,0,.40),
+            rgba(0,0,0,.10)
+        ),
+        url("images/516.jpg");
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    align-items:center;
+    color:white;
+}
+
+.poster-content{
+    padding:35px;
+    max-width:650px;
+}
+
+.poster h1{
+    font-size:40px;
+    margin-bottom:12px;
+}
+
+.poster p{
+    font-size:17px;
+    line-height:1.7;
+    margin-bottom:20px;
+}
+
+.poster-btn{
+    background:#f57224;
+    color:white;
+    border:0;
+    padding:13px 24px;
+    border-radius:6px;
+    font-weight:bold;
+}
+
+/* PRODUCTS */
+
+.container{
+    padding:0 5% 40px;
+}
+
+.title{
+    margin:22px 0 15px;
+    font-size:23px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.card{
+    background:white;
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 2px 8px #0002;
+}
+
+.product-image{
+    height:190px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:white;
+}
+
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    padding:12px;
+}
+
+.product-info{
+    padding:13px;
+}
+
+.product-name{
+    min-height:42px;
+    line-height:1.4;
+}
+
+.price{
+    color:#f57224;
+    font-size:20px;
+    font-weight:bold;
+    margin:8px 0;
+}
+
+.actions{
+    display:flex;
+    gap:7px;
+}
+
+.actions button{
+    flex:1;
+    padding:10px 5px;
+    border-radius:5px;
+    font-size:12px;
+}
+
+.add{
+    color:#f57224;
+    background:#fff0e8;
+    border:1px solid #ffd0b5;
+}
+
+.order{
+    color:white;
+    background:#f57224;
+    border:0;
+}
+
+/* CART */
+
+.cart-panel{
+    position:fixed;
+    top:0;
+    right:-430px;
+    width:min(430px,94vw);
+    height:100vh;
+    background:white;
+    z-index:100;
+    padding:18px;
+    box-shadow:-5px 0 20px #0003;
+    transition:.3s;
+    overflow-y:auto;
+}
+
+.cart-panel.open{
+    right:0;
+}
+
+.cart-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.close{
+    width:35px;
+    height:35px;
+    border:0;
+    border-radius:50%;
+    background:#eee;
+    font-size:20px;
+}
+
+.cart-item{
+    display:flex;
+    gap:10px;
+    padding:12px 0;
+    border-bottom:1px solid #eee;
+}
+
+.cart-item img{
+    width:65px;
+    height:65px;
+    object-fit:contain;
+}
+
+.cart-info{
+    flex:1;
+}
+
+.quantity{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    margin-top:7px;
+}
+
+.quantity button{
+    width:27px;
+    height:27px;
+    border:0;
+    background:#eee;
+    border-radius:4px;
+}
+
+.total{
+    font-size:20px;
+    font-weight:bold;
+    margin:20px 0;
+}
+
+.whatsapp-order{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:6px;
+    background:#25d366;
+    color:white;
+    font-size:16px;
+}
+
+/* FLOATING WHATSAPP */
+
+.whatsapp{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#25d366;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+    text-decoration:none;
+    z-index:80;
+}
+
+/* FOOTER */
+
+.footer{
+    background:#222;
+    color:#ddd;
+    padding:30px 5%;
+    line-height:1.8;
+}
+
+.footer h3{
+    color:white;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+    .products{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:650px){
+
+    .top{
+        display:none;
+    }
+
+    .header{
+        padding:10px 3%;
+        flex-wrap:wrap;
+    }
+
+    .logo{
+        font-size:20px;
+    }
+
+    .search{
+        order:3;
+        flex-basis:100%;
+    }
+
+    .poster{
+        margin:10px 3%;
+        min-height:300px;
+    }
+
+    .poster-content{
+        padding:25px;
+    }
+
+    .poster h1{
+        font-size:29px;
+    }
+
+    .poster p{
+        font-size:15px;
+    }
+
+    .container{
+        padding:0 3% 30px;
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .product-image{
+        height:145px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="top">
+    School Project BD • Electronics • Robotics
+</div>
+
+<header class="header">
+
+    <div class="logo">
+        School Project BD
+    </div>
+
+    <div class="search">
+        <input
+            id="search"
+            type="search"
+            placeholder="পণ্য খুঁজুন..."
+        >
+        <button onclick="renderProducts()">🔎</button>
+    </div>
+
+    <button class="cart-button" onclick="openCart()">
+        🛒
+        <span class="badge" id="cartCount">0</span>
+    </button>
+
+</header>
+
+<nav class="nav" id="categoryNav">
+
+    <button class="active" onclick="setCategory('সব',this)">
+        সব
+    </button>
+
+    <button onclick="setCategory('Arduino',this)">
+        Arduino
+    </button>
+
+    <button onclick="setCategory('Sensor',this)">
+        Sensors
+    </button>
+
+    <button onclick="setCategory('Motor',this)">
+        Motor
+    </button>
+
+    <button onclick="setCategory('LED',this)">
+        LED / Light
+    </button>
+
+    <button onclick="setCategory('ESP',this)">
+        ESP32
+    </button>
+
+    <button onclick="setCategory('Project',this)">
+        Project Parts
+    </button>
+
+</nav>
+
+
+<!-- ==============================
+     POSTER
+     ছবি অবশ্যই images/516.jpg
+     ============================== -->
+
+<section class="poster">
+
+    <div class="poster-content">
+
+        <h1>
+            School Project BD
+        </h1>
+
+        <p>
+            Electronics, Robotics এবং School Project-এর
+            প্রয়োজনীয় বিভিন্ন কম্পোনেন্ট এক জায়গায়।
+        </p>
+
+        <button
+            class="poster-btn"
+            onclick="document.getElementById('productSection').scrollIntoView({behavior:'smooth'})"
+        >
+            পণ্য দেখুন
+        </button>
+
+    </div>
+
+</section>
+
+
+<main class="container" id="productSection">
+
+    <h2 class="title">
+        জনপ্রিয় পণ্য
+    </h2>
+
+    <div
+        class="products"
+        id="products"
+    ></div>
+
+</main>
+
+
+<footer class="footer">
+
+    <h3>
+        School Project BD
+    </h3>
+
+    <p>
+        Electronics • Robotics • School Project Components
+    </p>
+
+    <p>
+        WhatsApp: 01804407566
+    </p>
+
+</footer>
+
+
+<!-- CART -->
+
+<div
+    class="cart-panel"
+    id="cartPanel"
+>
+
+    <div class="cart-header">
+
+        <h2>
+            🛒 My Cart
+        </h2>
+
+        <button
+            class="close"
+            onclick="closeCart()"
+        >
+            ×
+        </button>
+
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="total">
+        মোট: ৳<span id="cartTotal">0</span>
+    </div>
+
+    <button
+        class="whatsapp-order"
+        onclick="checkoutWhatsApp()"
+    >
+        WhatsApp-এ অর্ডার করুন
+    </button>
+
+</div>
+
+
+<!-- FLOATING WHATSAPP -->
+
+<a
+    class="whatsapp"
+    href="https://wa.me/8801804407566?text=আসসালামু%20আলাইকুম।%20আমি%20School%20Project%20BD%20সম্পর্কে%20জানতে%20চাই।"
+    target="_blank"
+>
+    ☏
+</a>
+
+
+<script>
+
+/* ==================================
+   তোমার WhatsApp নম্বর
+   ================================== */
+
+const WHATSAPP_NUMBER = "8801804407566";
+
+
+/* ==================================
+   PRODUCTS
+   ================================== */
+
+const products = [
+
+    {
+        id:1,
+        name:"Arduino UNO R3",
+        price:450,
+        category:"Arduino",
+        image:"images/arduino-uno.jpg"
+    },
+
+    {
+        id:2,
+        name:"LED Light",
+        price:10,
+        category:"LED",
+        image:"images/led.jpg"
+    },
+
+    {
+        id:3,
+        name:"Ultrasonic Sensor HC-SR04",
+        price:180,
+        category:"Sensor",
+        image:"images/ultrasonic.jpg"
+    },
+
+    {
+        id:4,
+        name:"DC Motor",
+        price:120,
+        category:"Motor",
+        image:"images/dc-motor.jpg"
+    },
+
+    {
+        id:5,
+        name:"ESP32 Development Board",
+        price:550,
+        category:"ESP",
+        image:"images/esp32.jpg"
+    },
+
+    {
+        id:6,
+        name:"Jumper Wire Set",
+        price:150,
+        category:"Project",
+        image:"images/jumper-wire.jpg"
+    },
+
+    {
+        id:7,
+        name:"PIR Motion Sensor",
+        price:120,
+        category:"Sensor",
+        image:"images/pir-sensor.jpg"
+    },
+
+    {
+        id:8,
+        name:"Breadboard",
+        price:100,
+        category:"Project",
+        image:"images/breadboard.jpg"
+    },
+
+    {
+        id:9,
+        name:"Robotics Motor",
+        price:180,
+        category:"Motor",
+        image:"images/dc-motor.jpg"
+    },
+
+    {
+        id:10,
+        name:"Mini DC Fan",
+        price:220,
+        category:"Motor",
+        image:"images/dc-motor.jpg"
+    },
+
+    {
+        id:11,
+        name:"LED Project Light",
+        price:80,
+        category:"LED",
+        image:"images/led.jpg"
+    },
+
+    {
+        id:12,
+        name:"Project Sensor Kit",
+        price:650,
+        category:"Project",
+        image:"images/pir-sensor.jpg"
+    }
+
+];
+
+
+/* ==================================
+   CART
+   ================================== */
+
+let cart =
+    JSON.parse(
+        localStorage.getItem("schoolProjectCart") || "[]"
+    );
+
+
+let currentCategory = "সব";
+
+
+/* ==================================
+   PRODUCTS SHOW
+   ================================== */
+
+function renderProducts(){
+
+    const searchText =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const filtered =
+        products.filter(function(product){
+
+            const categoryMatch =
+                currentCategory === "সব" ||
+                product.category === currentCategory;
+
+
+            const searchMatch =
+                !searchText ||
+                product.name
+                .toLowerCase()
+                .includes(searchText) ||
+                product.category
+                .toLowerCase()
+                .includes(searchText);
+
+
+            return categoryMatch && searchMatch;
+
+        });
+
+
+    const box =
+        document.getElementById("products");
+
+
+    box.innerHTML =
+        filtered.map(function(product){
+
+            return `
+
+            <div class="card">
+
+                <div class="product-image">
+
+                    <img
+                        src="${product.image}"
+                        alt="${product.name}"
+                    >
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <div class="product-name">
+                        ${product.name}
+                    </div>
+
+                    <div class="price">
+                        ৳${product.price}
+                    </div>
+
+
+                    <div class="actions">
+
+                        <button
+                            class="add"
+                            onclick="addToCart(${product.id})"
+                        >
+                            🛒 Add to Cart
+                        </button>
+
+                        <button
+                            class="order"
+                            onclick="orderNow(${product.id})"
+                        >
+                            Order Now
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* ==================================
+   CATEGORY
+   ================================== */
+
+function setCategory(category,button){
+
+    currentCategory = category;
+
+    document
+    .querySelectorAll("#categoryNav button")
+    .forEach(function(btn){
+        btn.classList.remove("active");
+    });
+
+
+    button.classList.add("active");
+
+    renderProducts();
+
+}
+
+
+/* ==================================
+   ADD TO CART
+   ================================== */
+
+function addToCart(id){
+
+    const product =
+        products.find(function(p){
+            return p.id === id;
+        });
+
+
+    const existing =
+        cart.find(function(item){
+            return item.id === id;
+        });
+
+
+    if(existing){
+
+        existing.quantity++;
+
+    }else{
+
+        cart.push({
+
+            ...product,
+
+            quantity:1
+
+        });
+
+    }
+
+
+    saveCart();
+
+    openCart();
+
+}
+
+
+/* ==================================
+   SAVE CART
+   ================================== */
+
+function saveCart(){
+
+    localStorage.setItem(
+        "schoolProjectCart",
+        JSON.stringify(cart)
+    );
+
+    updateCartCount();
+
+}
+
+
+/* ==================================
+   CART COUNT
+   ================================== */
+
+function updateCartCount(){
+
+    const count =
+        cart.reduce(
+            function(total,item){
+                return total + item.quantity;
+            },
+            0
+        );
+
+
+    document.getElementById(
+        "cartCount"
+    ).textContent = count;
+
+}
+
+
+/* ==================================
+   OPEN CART
+   ================================== */
+
+function openCart(){
+
+    document
+    .getElementById("cartPanel")
+    .classList.add("open");
+
+
+    renderCart();
+
+}
+
+
+/* ==================================
+   CLOSE CART
+   ================================== */
+
+function closeCart(){
+
+    document
+    .getElementById("cartPanel")
+    .classList.remove("open");
+
+}
+
+
+/* ==================================
+   CART SHOW
+   ================================== */
+
+function renderCart(){
+
+    const box =
+        document.getElementById("cartItems");
+
+
+    if(cart.length === 0){
+
+        box.innerHTML =
+            "<p>তোমার Cart এখন খালি।</p>";
+
+        document.getElementById(
+            "cartTotal"
+        ).textContent = "0";
+
+        return;
+
+    }
+
+
+    box.innerHTML =
+        cart.map(function(item){
+
+            return `
+
+            <div class="cart-item">
+
+                <img
+                    src="${item.image}"
+                    alt="${item.name}"
+                >
+
+                <div class="cart-info">
+
+                    <b>
+                        ${item.name}
+                    </b>
+
+                    <div>
+                        ৳${item.price} × ${item.quantity}
+                    </div>
+
+                    <div class="quantity">
+
+                        <button
+                            onclick="changeQuantity(${item.id},-1)"
+                        >
+                            −
+                        </button>
+
+                        <span>
+                            ${item.quantity}
+                        </span>
+
+                        <button
+                            onclick="changeQuantity(${item.id},1)"
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            `;
+
+        }).join("");
+
+
+    const total =
+        cart.reduce(
+            function(sum,item){
+                return sum +
+                    item.price * item.quantity;
+            },
+            0
+        );
+
+
+    document.getElementById(
+        "cartTotal"
+    ).textContent = total;
+
+}
+
+
+/* ==================================
+   QUANTITY
+   ================================== */
+
+function changeQuantity(id,change){
+
+    const item =
+        cart.find(function(i){
+            return i.id === id;
+        });
+
+
+    if(!item) return;
+
+
+    item.quantity += change;
+
+
+    if(item.quantity <= 0){
+
+        cart =
+            cart.filter(function(i){
+                return i.id !== id;
+            });
+
+    }
+
+
+    saveCart();
+
+    renderCart();
+
+}
+
+
+/* ==================================
+   WHATSAPP LINK
+   ================================== */
+
+function whatsappLink(message){
+
+    return (
+        "https://wa.me/" +
+        WHATSAPP_NUMBER +
+        "?text=" +
+        encodeURIComponent(message)
+    );
+
+}
+
+
+/* ==================================
+   ORDER NOW
+   ================================== */
+
+function orderNow(id){
+
+    const product =
+        products.find(function(p){
+            return p.id === id;
+        });
+
+
+    const message =
+`আসসালামু আলাইকুম।
+
+আমি School Project BD থেকে এই পণ্যটি অর্ডার করতে চাই।
+
+পণ্যের নাম: ${product.name}
+পরিমাণ: 1
+দাম: ৳${product.price}
+
+আমার নাম:
+ঠিকানা:
+মোবাইল নম্বর:`;
+
+
+    window.open(
+        whatsappLink(message),
+        "_blank"
+    );
+
+}
+
+
+/* ==================================
+   CART CHECKOUT → WHATSAPP
+   ================================== */
+
+function checkoutWhatsApp(){
+
+    if(cart.length === 0){
+
+        alert("Cart খালি। আগে কোনো পণ্য Add to Cart করুন।");
+
+        return;
+
+    }
+
+
+    let message =
+`আসসালামু আলাইকুম।
+
+আমি School Project BD থেকে অর্ডার করতে চাই।
+
+`;
+
+
+    cart.forEach(function(item,index){
+
+        message +=
+`${index + 1}. ${item.name}
+পরিমাণ: ${item.quantity}
+দাম: ৳${item.price * item.quantity}
+
+`;
+
+    });
+
+
+    const total =
+        cart.reduce(
+            function(sum,item){
+                return sum +
+                    item.price * item.quantity;
+            },
+            0
+        );
+
+
+    message +=
+`মোট: ৳${total}
+
+আমার নাম:
+ঠিকানা:
+মোবাইল নম্বর:`;
+
+
+    window.open(
+        whatsappLink(message),
+        "_blank"
+    );
+
+}
+
+
+/* ==================================
+   SEARCH
+   ================================== */
+
+document
+.getElementById("search")
+.addEventListener(
+    "input",
+    renderProducts
+);
+
+
+/* START */
+
+renderProducts();
+
+updateCartCount();
+
+</script>
+
+</body>
+</html>
