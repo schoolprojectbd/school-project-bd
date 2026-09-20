@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -298,4 +297,972 @@ body{
   margin-top:25px;
   padding:25px;
   display:flex;
-  align
+  align-items:center;
+  gap:25px;
+}
+
+.owner img{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid #f85606;
+}
+
+.owner h2{
+  margin-bottom:8px;
+}
+
+.owner p{
+  color:#666;
+}
+
+/* CART */
+.cart{
+  position:fixed;
+  right:-420px;
+  top:0;
+  width:400px;
+  max-width:95%;
+  height:100%;
+  background:white;
+  z-index:1000;
+  box-shadow:-3px 0 15px #999;
+  transition:.3s;
+  padding:20px;
+  overflow-y:auto;
+}
+
+.cart.open{
+  right:0;
+}
+
+.cart-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #ddd;
+  padding-bottom:15px;
+  margin-bottom:15px;
+}
+
+.close-cart{
+  background:none;
+  border:0;
+  font-size:25px;
+  cursor:pointer;
+}
+
+.cart-item{
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.remove{
+  color:red;
+  border:0;
+  background:none;
+  cursor:pointer;
+}
+
+.cart-total{
+  font-size:20px;
+  font-weight:bold;
+  margin:20px 0;
+}
+
+.whatsapp-btn{
+  width:100%;
+  padding:14px;
+  border:0;
+  background:#25D366;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  border-radius:4px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  margin-top:35px;
+  background:#222;
+  color:white;
+  padding:35px 5%;
+}
+
+.footer-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+
+footer h3{
+  margin-bottom:12px;
+}
+
+footer p{
+  color:#ccc;
+  line-height:25px;
+}
+
+.copyright{
+  text-align:center;
+  border-top:1px solid #444;
+  margin-top:25px;
+  padding-top:20px;
+  color:#aaa;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .products{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .categories{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .hero-icon{
+    font-size:80px;
+  }
+}
+
+@media(max-width:600px){
+  .topbar{
+    display:none;
+  }
+
+  .header{
+    padding:12px;
+    gap:10px;
+  }
+
+  .logo{
+    font-size:19px;
+  }
+
+  .search{
+    height:38px;
+  }
+
+  .search button{
+    width:45px;
+  }
+
+  .nav{
+    overflow-x:auto;
+    padding:10px 12px;
+    gap:20px;
+    white-space:nowrap;
+  }
+
+  .hero{
+    margin:10px;
+    min-height:200px;
+    padding:25px;
+  }
+
+  .hero-text h1{
+    font-size:27px;
+  }
+
+  .hero-icon{
+    display:none;
+  }
+
+  .container{
+    width:100%;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+    padding:0 8px;
+  }
+
+  .product-img{
+    height:160px;
+  }
+
+  .categories{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .owner{
+    margin:15px 8px;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>Welcome to School Project BD</span>
+  <span>Help & Support</span>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+
+  <div class="logo">
+    School Project BD
+  </div>
+
+  <div class="search">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search for products..."
+      onkeyup="searchProducts()"
+    >
+    <button onclick="searchProducts()">🔍</button>
+  </div>
+
+  <div class="cart-btn" onclick="openCart()">
+    🛒
+    <span class="cart-count" id="cartCount">0</span>
+  </div>
+
+</header>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <a onclick="scrollToProducts()">Home</a>
+  <a onclick="scrollToProducts()">All Products</a>
+  <a onclick="filterCategory('Arduino')">Arduino</a>
+  <a onclick="filterCategory('Sensor')">Sensors</a>
+  <a onclick="filterCategory('Motor')">Motors</a>
+  <a onclick="openCart()">Cart</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="hero-text">
+    <h1>Build Your Project</h1>
+    <p>Electronic components for your school, college and DIY projects.</p>
+    <button class="shop-btn" onclick="scrollToProducts()">
+      SHOP NOW
+    </button>
+  </div>
+
+  <div class="hero-icon">
+    🔧
+  </div>
+
+</section>
+
+<div class="container">
+
+<!-- CATEGORIES -->
+<div class="section-title">
+  <h2>Categories</h2>
+</div>
+
+<div class="categories">
+
+  <div class="category" onclick="filterCategory('Arduino')">
+    <div class="category-icon">🔧</div>
+    <p>Arduino</p>
+  </div>
+
+  <div class="category" onclick="filterCategory('Sensor')">
+    <div class="category-icon">📡</div>
+    <p>Sensors</p>
+  </div>
+
+  <div class="category" onclick="filterCategory('Motor')">
+    <div class="category-icon">⚙️</div>
+    <p>Motors</p>
+  </div>
+
+  <div class="category" onclick="filterCategory('LED')">
+    <div class="category-icon">💡</div>
+    <p>LED</p>
+  </div>
+
+  <div class="category" onclick="filterCategory('Wire')">
+    <div class="category-icon">🔌</div>
+    <p>Wires</p>
+  </div>
+
+  <div class="category" onclick="showAll()">
+    <div class="category-icon">📦</div>
+    <p>All Products</p>
+  </div>
+
+</div>
+
+<!-- PRODUCTS -->
+<div class="section-title" id="productsSection">
+  <h2>Flash Sale & Products</h2>
+</div>
+
+<div class="products" id="products">
+
+<!-- PRODUCT 1 -->
+<div class="product" data-category="Arduino">
+
+<img
+  class="product-img"
+  src="images/arduino-uno.jpg"
+  alt="Arduino UNO"
+  onerror="this.src='images/516.jpg'"
+>
+
+<div class="product-info">
+
+<div class="product-name">
+Arduino UNO Development Board
+</div>
+
+<div class="rating">
+★★★★★ <span style="color:#777;">(12)</span>
+</div>
+
+<div>
+<span class="price">৳350</span>
+<span class="old-price">৳400</span>
+</div>
+
+<div class="buttons">
+<button class="add-btn" onclick="addToCart('Arduino UNO',350)">
+Add to Cart
+</button>
+
+<button class="buy-btn" onclick="orderNow('Arduino UNO',350)">
+Buy Now
+</button>
+</div>
+
+</div>
+</div>
+
+
+<!-- PRODUCT 2 -->
+<div class="product" data-category="LED">
+
+<img
+  class="product-img"
+  src="images/led.jpg"
+  alt="LED"
+  onerror="this.src='images/516.jpg'"
+>
+
+<div class="product-info">
+
+<div class="product-name">
+5mm LED Light
+</div>
+
+<div class="rating">
+★★★★★ <span style="color:#777;">(20)</span>
+</div>
+
+<div>
+<span class="price">৳10</span>
+<span class="old-price">৳15</span>
+</div>
+
+<div class="buttons">
+<button class="add-btn" onclick="addToCart('5mm LED Light',10)">
+Add to Cart
+</button>
+
+<button class="buy-btn" onclick="orderNow('5mm LED Light',10)">
+Buy Now
+</button>
+</div>
+
+</div>
+</div>
+
+
+<!-- PRODUCT 3 -->
+<div class="product" data-category="Sensor">
+
+<img
+  class="product-img"
+  src="images/ultrasonic.jpg"
+  alt="Ultrasonic Sensor"
+  onerror="this.src='images/516.jpg'"
+>
+
+<div class="product-info">
+
+<div class="product-name">
+HC-SR04 Ultrasonic Sensor
+</div>
+
+<div class="rating">
+★★★★★ <span style="color:#777;">(15)</span>
+</div>
+
+<div>
+<span class="price">৳180</span>
+<span class="old-price">৳220</span>
+</div>
+
+<div class="buttons">
+<button class="add-btn" onclick="addToCart('HC-SR04 Ultrasonic Sensor',180)">
+Add to Cart
+</button>
+
+<button class="buy-btn" onclick="orderNow('HC-SR04 Ultrasonic Sensor',180)">
+Buy Now
+</button>
+</div>
+
+</div>
+</div>
+
+
+<!-- PRODUCT 4 -->
+<div class="product" data-category="Motor">
+
+<img
+  class="product-img"
+  src="images/dc-motor.jpg"
+  alt="DC Motor"
+  onerror="this.src='images/516.jpg'"
+>
+
+<div class="product-info">
+
+<div class="product-name">
+DC Gear Motor
+</div>
+
+<div class="rating">
+★★★★★ <span style="color:#777;">(9)</span>
+</div>
+
+<div>
+<span class="price">৳80</span>
+<span class="old-price">৳100</span>
+</div>
+
+<div class="buttons">
+<button class="add-btn" onclick="addToCart('DC Gear Motor',80)">
+Add to Cart
+</button>
+
+<button class="buy-btn" onclick="orderNow('DC Gear Motor',80)">
+Buy Now
+</button>
+</div>
+
+</div>
+</div>
+
+
+<!-- PRODUCT 5 -->
+<div class="product" data-category="Arduino">
+
+<img
+  class="product-img"
+  src="images/esp32.jpg"
+  alt="ESP32"
+  onerror="this.src='images/516.jpg'"
+>
+
+<div class="product-info">
+
+<div class="product-name">
+ESP32 Development Board
+</div>
+
+<div class="rating">
+★★★★★ <span style="color:#777;">(11)</span>
+</div>
+
+<div>
+<span class="price">৳450</span>
+<span class="old-price">৳500</span>
+</div>
+
+<div class="buttons">
+<button class="add-btn" onclick="addToCart('ESP32 Development Board',450)">
+Add to Cart
+</button>
+
+<button class="buy-btn" onclick="orderNow('ESP32 Development Board',450)">
+Buy Now
+</button>
+</div>
+
+</div>
+</div>
+
+
+<!-- PRODUCT 6 -->
+<div class="product" data-category="Wire">
+
+<img
+  class="product-img"
+  src="images/jumper-wire.jpg"
+  alt="Jumper Wire"
+  onerror="this.src='images/516.jpg'"
+>
+
+<div class="product-info">
+
+<div class="product-name">
+Jumper Wire Set
+</div>
+
+<div class="rating">
+★★★★★ <span style="color:#777;">(18)</span>
+</div>
+
+<div>
+<span class="price">৳60</span>
+<span class="old-price">৳80</span>
+</div>
+
+<div class="buttons">
+<button class="add-btn" onclick="addToCart('Jumper Wire Set',60)">
+Add to Cart
+</button>
+
+<button class="buy-btn" onclick="orderNow('Jumper Wire Set',60)">
+Buy Now
+</button>
+</div>
+
+</div>
+</div>
+
+
+<!-- PRODUCT 7 -->
+<div class="product" data-category="Sensor">
+
+<img
+  class="product-img"
+  src="images/pir-sensor.jpg"
+  alt="PIR Sensor"
+  onerror="this.src='images/516.jpg'"
+>
+
+<div class="product-info">
+
+<div class="product-name">
+PIR Motion Sensor
+</div>
+
+<div class="rating">
+★★★★★ <span style="color:#777;">(8)</span>
+</div>
+
+<div>
+<span class="price">৳120</span>
+<span class="old-price">৳150</span>
+</div>
+
+<div class="buttons">
+<button class="add-btn" onclick="addToCart('PIR Motion Sensor',120)">
+Add to Cart
+</button>
+
+<button class="buy-btn" onclick="orderNow('PIR Motion Sensor',120)">
+Buy Now
+</button>
+</div>
+
+</div>
+</div>
+
+
+<!-- PRODUCT 8 -->
+<div class="product" data-category="Arduino">
+
+<img
+  class="product-img"
+  src="images/breadboard.jpg"
+  alt="Breadboard"
+  onerror="this.src='images/516.jpg'"
+>
+
+<div class="product-info">
+
+<div class="product-name">
+830 Point Breadboard
+</div>
+
+<div class="rating">
+★★★★★ <span style="color:#777;">(14)</span>
+</div>
+
+<div>
+<span class="price">৳100</span>
+<span class="old-price">৳130</span>
+</div>
+
+<div class="buttons">
+<button class="add-btn" onclick="addToCart('830 Point Breadboard',100)">
+Add to Cart
+</button>
+
+<button class="buy-btn" onclick="orderNow('830 Point Breadboard',100)">
+Buy Now
+</button>
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+<!-- OWNER -->
+<div class="owner">
+
+<img
+  src="images/owner.jpg"
+  alt="Owner"
+  onerror="this.src='images/516.jpg'"
+>
+
+<div>
+<h2>About School Project BD</h2>
+<p>
+School Project BD provides electronic components
+for school projects, robotics projects and DIY electronics.
+</p>
+
+<p>
+<strong>WhatsApp:</strong> 01804407566
+</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CART -->
+<div class="cart" id="cart">
+
+<div class="cart-header">
+<h2>Shopping Cart</h2>
+
+<button class="close-cart" onclick="closeCart()">
+×
+</button>
+</div>
+
+<div id="cartItems">
+Your cart is empty.
+</div>
+
+<div class="cart-total">
+Total: ৳<span id="cartTotal">0</span>
+</div>
+
+<button class="whatsapp-btn" onclick="orderCart()">
+💬 Order Cart on WhatsApp
+</button>
+
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+
+<div class="footer-grid">
+
+<div>
+<h3>School Project BD</h3>
+<p>
+Electronic components for students,
+robotics and DIY projects.
+</p>
+</div>
+
+<div>
+<h3>Customer Service</h3>
+<p>WhatsApp: 01804407566</p>
+<p>Fast response for orders</p>
+</div>
+
+<div>
+<h3>Quick Links</h3>
+<p>Home</p>
+<p>All Products</p>
+<p>Shopping Cart</p>
+</div>
+
+</div>
+
+<div class="copyright">
+© 2026 School Project BD. All Rights Reserved.
+</div>
+
+</footer>
+
+
+<script>
+
+/* WHATSAPP NUMBER */
+const WHATSAPP_NUMBER = "8801804407566";
+
+let cart = [];
+
+
+/* ADD TO CART */
+function addToCart(name,price){
+
+  cart.push({
+    name:name,
+    price:price
+  });
+
+  updateCart();
+
+  alert(name + " added to cart!");
+}
+
+
+/* UPDATE CART */
+function updateCart(){
+
+  document.getElementById("cartCount").innerText = cart.length;
+
+  const items = document.getElementById("cartItems");
+
+  if(cart.length === 0){
+
+    items.innerHTML = "Your cart is empty.";
+
+    document.getElementById("cartTotal").innerText = "0";
+
+    return;
+  }
+
+  let total = 0;
+
+  items.innerHTML = "";
+
+  cart.forEach((item,index)=>{
+
+    total += item.price;
+
+    const div = document.createElement("div");
+
+    div.className = "cart-item";
+
+    div.innerHTML = `
+      <div>
+        <strong>${item.name}</strong>
+        <br>
+        ৳${item.price}
+      </div>
+
+      <button class="remove" onclick="removeItem(${index})">
+        Remove
+      </button>
+    `;
+
+    items.appendChild(div);
+
+  });
+
+  document.getElementById("cartTotal").innerText = total;
+}
+
+
+/* REMOVE ITEM */
+function removeItem(index){
+
+  cart.splice(index,1);
+
+  updateCart();
+}
+
+
+/* OPEN CART */
+function openCart(){
+
+  document.getElementById("cart").classList.add("open");
+
+}
+
+
+/* CLOSE CART */
+function closeCart(){
+
+  document.getElementById("cart").classList.remove("open");
+
+}
+
+
+/* BUY NOW */
+function orderNow(name,price){
+
+  const message =
+  "Hello School Project BD,%0A%0A" +
+  "I want to order:%0A" +
+  "Product: " + encodeURIComponent(name) +
+  "%0APrice: ৳" + price +
+  "%0A%0APlease confirm my order.";
+
+  window.open(
+    "https://wa.me/" +
+    WHATSAPP_NUMBER +
+    "?text=" +
+    message,
+    "_blank"
+  );
+}
+
+
+/* CART ORDER */
+function orderCart(){
+
+  if(cart.length === 0){
+
+    alert("Your cart is empty!");
+
+    return;
+  }
+
+  let message =
+  "Hello School Project BD,%0A%0A" +
+  "I want to order these products:%0A%0A";
+
+  let total = 0;
+
+  cart.forEach((item,index)=>{
+
+    message +=
+    (index + 1) +
+    ". " +
+    encodeURIComponent(item.name) +
+    " - ৳" +
+    item.price +
+    "%0A";
+
+    total += item.price;
+
+  });
+
+  message +=
+  "%0ATotal: ৳" +
+  total +
+  "%0A%0APlease confirm my order.";
+
+  window.open(
+    "https://wa.me/" +
+    WHATSAPP_NUMBER +
+    "?text=" +
+    message,
+    "_blank"
+  );
+}
+
+
+/* SEARCH */
+function searchProducts(){
+
+  const search =
+    document
+    .getElementById("searchInput")
+    .value
+    .toLowerCase();
+
+  const products =
+    document.querySelectorAll(".product");
+
+  products.forEach(product=>{
+
+    const name =
+      product
+      .querySelector(".product-name")
+      .innerText
+      .toLowerCase();
+
+    if(name.includes(search)){
+
+      product.style.display = "";
+
+    }else{
+
+      product.style.display = "none";
+
+    }
+
+  });
+
+}
+
+
+/* CATEGORY FILTER */
+function filterCategory(category){
+
+  const products =
+    document.querySelectorAll(".product");
+
+  products.forEach(product=>{
+
+    if(
+      product.dataset.category === category
+    ){
+
+      product.style.display = "";
+
+    }else{
+
+      product.style.display = "none";
+
+    }
+
+  });
+
+  document
+  .getElementById("productsSection")
+  .scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+/* SHOW ALL */
+function showAll(){
+
+  document
+  .querySelectorAll(".product")
+  .forEach(product=>{
+    product.style.display = "";
+  });
+
+}
+
+
+/* SCROLL PRODUCTS */
+function scrollToProducts(){
+
+  document
+  .getElementById("productsSection")
+  .scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+</script>
+
+</body>
+</html>
