@@ -4,19 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
 <title>School Project BD | Electronics Marketplace</title>
-<meta name="description" content="School Project BD - Quality electronic components, modules and project materials at affordable prices.">
 
+<meta name="description" content="School Project BD - Quality electronic components, modules and project materials at affordable prices.">
 
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "School Project BD",
-  "url": "https://schoolprojectbd.github.io/school-project-bd/"
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"School Project BD",
+  "url":"https://schoolprojectbd.github.io/school-project-bd/"
 }
 </script>
+
 <style>
 *{
   margin:0;
@@ -30,7 +30,6 @@ body{
   color:#222;
 }
 
-/* TOP BAR */
 .topbar{
   background:#111827;
   color:#fff;
@@ -40,9 +39,8 @@ body{
   justify-content:space-between;
 }
 
-/* HEADER */
 .header{
-  background:#ffffff;
+  background:#fff;
   padding:15px 5%;
   display:flex;
   align-items:center;
@@ -83,7 +81,6 @@ body{
   color:#777;
 }
 
-/* SEARCH */
 .search{
   flex:1;
   display:flex;
@@ -111,7 +108,6 @@ body{
   cursor:pointer;
 }
 
-/* CART */
 .cart{
   position:relative;
   font-size:27px;
@@ -133,7 +129,6 @@ body{
   justify-content:center;
 }
 
-/* NAV */
 .nav{
   background:#fff;
   border-top:1px solid #eee;
@@ -155,14 +150,13 @@ body{
   color:#ff6b00;
 }
 
-/* HERO */
 .hero{
   margin:20px 5%;
   border-radius:15px;
   min-height:280px;
   padding:40px;
   background:
-  linear-gradient(rgba(17,24,39,0.55),rgba(17,24,39,0.55)),
+  linear-gradient(rgba(17,24,39,.55),rgba(17,24,39,.55)),
   url("IMG_6755~2.JPG") center/cover no-repeat;
   color:white;
   display:flex;
@@ -201,7 +195,6 @@ body{
   opacity:.9;
 }
 
-/* CATEGORIES */
 .section{
   margin:25px 5%;
 }
@@ -243,7 +236,6 @@ body{
   margin-bottom:8px;
 }
 
-/* PRODUCTS */
 .products{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -392,7 +384,6 @@ body{
   background:#e85d00;
 }
 
-/* BADGE */
 .badge{
   position:absolute;
   top:10px;
@@ -402,9 +393,9 @@ body{
   padding:5px 8px;
   font-size:11px;
   border-radius:4px;
+  z-index:2;
 }
 
-/* FOOTER */
 .footer{
   background:#111827;
   color:white;
@@ -442,8 +433,8 @@ body{
   font-size:12px;
 }
 
-/* MOBILE */
 @media(max-width:900px){
+
   .products{
     grid-template-columns:repeat(3,1fr);
   }
@@ -455,9 +446,11 @@ body{
   .hero-art{
     font-size:80px;
   }
+
 }
 
 @media(max-width:650px){
+
   .topbar{
     display:none;
   }
@@ -532,23 +525,23 @@ body{
   .footer-grid{
     grid-template-columns:1fr 1fr;
   }
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- TOP BAR -->
 <div class="topbar">
   <span>Welcome to School Project BD</span>
   <span>Help Center | Contact Us</span>
 </div>
 
-<!-- HEADER -->
 <header class="header">
 
   <div class="logo">
     <div class="logo-icon">SP</div>
+
     <div class="logo-text">
       <h1>School Project BD</h1>
       <p>Electronics Marketplace</p>
@@ -556,13 +549,15 @@ body{
   </div>
 
   <div class="search">
+
     <input
       id="searchInput"
       type="text"
       placeholder="Search for electronics, components..."
-      onkeyup="searchProducts()"
     >
-    <button>🔍</button>
+
+    <button onclick="searchProducts()">🔍</button>
+
   </div>
 
   <div class="cart" onclick="showCart()">
@@ -572,38 +567,62 @@ body{
 
 </header>
 
-<!-- NAVIGATION -->
 <nav class="nav">
+
   <span onclick="filterCategory('all')">Home</span>
-  <span onclick="filterCategory('Arduino')">Arduino</span>
-  <span onclick="filterCategory('LED')">LED & Lighting</span>
-  <span onclick="filterCategory('Sensor')">Sensors</span>
-  <span onclick="filterCategory('Component')">Components</span>
-  <span onclick="filterCategory('Wire')">Wire & Cable</span>
-  <span onclick="filterCategory('Battery')">Battery</span>
+
+  <span onclick="filterCategory('Arduino')">
+    Arduino
+  </span>
+
+  <span onclick="filterCategory('LED')">
+    LED & Lighting
+  </span>
+
+  <span onclick="filterCategory('Sensor')">
+    Sensors
+  </span>
+
+  <span onclick="filterCategory('Component')">
+    Components
+  </span>
+
+  <span onclick="filterCategory('Wire')">
+    Wire & Cable
+  </span>
+
+  <span onclick="filterCategory('Battery')">
+    Battery
+  </span>
+
 </nav>
 
-<!-- HERO -->
 <section class="hero">
 
   <div class="hero-content">
-    <h2>Build Your Project<br>With Better Electronics</h2>
+
+    <h2>
+      Build Your Project<br>
+      With Better Electronics
+    </h2>
 
     <p>
       Quality electronic components, modules and project materials
       at affordable prices. Order easily from School Project BD.
     </p>
 
-    <button onclick="document.getElementById('productsSection').scrollIntoView()">
+    <button onclick="document.getElementById('productsSection').scrollIntoView({behavior:'smooth'})">
       Shop Now →
     </button>
+
   </div>
 
-  <div class="hero-art">⚡🔧</div>
+  <div class="hero-art">
+    ⚡🔧
+  </div>
 
 </section>
 
-<!-- CATEGORIES -->
 <section class="section">
 
   <div class="section-title">
@@ -646,58 +665,71 @@ body{
 
 </section>
 
-<!-- PRODUCTS -->
 <section class="section" id="productsSection">
 
   <div class="section-title">
+
     <h2>Popular Products</h2>
+
     <span id="resultText"></span>
+
   </div>
 
   <div class="products" id="productGrid"></div>
 
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
 
   <div class="footer-grid">
 
     <div>
+
       <h3>School Project BD</h3>
+
       <p>
         Your online destination for electronic components,
         project materials and educational electronics.
       </p>
+
     </div>
 
     <div>
+
       <h3>Customer Care</h3>
+
       <ul>
         <li>Help Center</li>
         <li>How to Order</li>
         <li>Return Policy</li>
         <li>Contact Us</li>
       </ul>
+
     </div>
 
     <div>
+
       <h3>Categories</h3>
+
       <ul>
         <li>Arduino</li>
         <li>Sensors</li>
         <li>LED</li>
         <li>Components</li>
       </ul>
+
     </div>
 
     <div>
+
       <h3>Contact</h3>
+
       <ul>
         <li>📱 WhatsApp</li>
         <li>📧 Email</li>
         <li>📍 Bangladesh</li>
       </ul>
+
     </div>
 
   </div>
@@ -711,19 +743,9 @@ body{
 
 <script>
 
-/*
-====================================================
-PRODUCT DATABASE
-====================================================
-
-নতুন product যোগ করতে নিচের মতো আরেকটি { } block
-copy করে products-এর ভিতরে বসাবে।
-
-image = product-এর ছবি
-ownerPhoto = owner-এর ছোট ছবি
-price = বর্তমান দাম
-oldPrice = আগের দাম
-*/
+/* ================================
+   PRODUCT DATABASE
+================================ */
 
 const products = [
 
@@ -845,23 +867,45 @@ const products = [
     image:"https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80",
     owner:"Cable House",
     ownerPhoto:"https://i.pravatar.cc/100?img=2"
-}
+  },
+
+  {
+    name:"DC Motor",
+    category:"Component",
+    price:450,
+    oldPrice:500,
+    image:"images/dc-motor.jpg",
+    owner:"School Project BD",
+    ownerPhoto:"https://i.pravatar.cc/100?img=12"
+  }
 
 ];
 
 
+/* ================================
+   CART
+================================ */
+
 let cartCount = 0;
 
+const quantities = {};
 
-/* SHOW PRODUCTS */
+
+/* ================================
+   SHOW PRODUCTS
+================================ */
 
 function displayProducts(list){
 
   const grid = document.getElementById("productGrid");
 
+  if(!grid){
+    return;
+  }
+
   grid.innerHTML = "";
 
-  if(list.length === 0){
+  if(!list || list.length === 0){
 
     grid.innerHTML =
       "<p style='grid-column:1/-1;text-align:center;padding:40px'>No products found.</p>";
@@ -893,12 +937,20 @@ function displayProducts(list){
         </div>
 
         <div class="rating">
-          ★★★★★ <span style="color:#999">(4.8)</span>
+          ★★★★★
+          <span style="color:#999">(4.8)</span>
         </div>
 
         <div>
-          <span class="price">৳${product.price}</span>
-          <span class="old-price">৳${product.oldPrice}</span>
+
+          <span class="price">
+            ৳${product.price}
+          </span>
+
+          <span class="old-price">
+            ৳${product.oldPrice}
+          </span>
+
         </div>
 
         <div class="owner">
@@ -909,8 +961,13 @@ function displayProducts(list){
           >
 
           <div class="owner-info">
+
             Seller / Owner
-            <strong>${product.owner}</strong>
+
+            <strong>
+              ${product.owner}
+            </strong>
+
           </div>
 
         </div>
@@ -967,9 +1024,9 @@ function displayProducts(list){
 }
 
 
-/* QUANTITY */
-
-const quantities = {};
+/* ================================
+   QUANTITY
+================================ */
 
 function changeQty(index,change){
 
@@ -983,7 +1040,8 @@ function changeQty(index,change){
     quantities[index] = 1;
   }
 
-  const element = document.getElementById("qty-"+index);
+  const element =
+    document.getElementById("qty-" + index);
 
   if(element){
     element.innerText = quantities[index];
@@ -992,26 +1050,33 @@ function changeQty(index,change){
 }
 
 
-/* ADD CART */
+/* ================================
+   ADD TO CART
+================================ */
 
 function addToCart(){
 
   cartCount++;
 
-  document.getElementById("cartCount").innerText = cartCount;
+  document.getElementById("cartCount").innerText =
+    cartCount;
 
   alert("Product added to cart successfully! 🛒");
 
 }
 
 
-/* ORDER */
+/* ================================
+   ORDER
+================================ */
 
 function orderProduct(name,price,index){
 
-  const qty = quantities[index] || 1;
+  const qty =
+    quantities[index] || 1;
 
-  const total = price * qty;
+  const total =
+    price * qty;
 
   const message =
     "Hello School Project BD,%0A%0A" +
@@ -1020,34 +1085,37 @@ function orderProduct(name,price,index){
     "Quantity: " + qty + "%0A" +
     "Total: ৳" + total;
 
-  /*
-  ==========================================
-  IMPORTANT:
-  এখানে তোমার WhatsApp number বসাবে।
-  ==========================================
-  */
-
-  const whatsappNumber = "8801804407566";
+  const whatsappNumber =
+    "8801804407566";
 
   window.open(
-    "https://wa.me/" + whatsappNumber + "?text=" + message,
+    "https://wa.me/" +
+    whatsappNumber +
+    "?text=" +
+    message,
     "_blank"
   );
 
 }
 
 
-/* SEARCH */
+/* ================================
+   SEARCH
+================================ */
 
 function searchProducts(){
 
-  const text =
-    document.getElementById("searchInput")
-    .value
-    .toLowerCase();
+  const input =
+    document.getElementById("searchInput");
 
-  const result = products.filter(product =>
-    product.name.toLowerCase().includes(text)
+  const text =
+    input.value.toLowerCase().trim();
+
+  const result =
+    products.filter(product =>
+      product.name
+      .toLowerCase()
+      .includes(text)
   );
 
   displayProducts(result);
@@ -1055,7 +1123,9 @@ function searchProducts(){
 }
 
 
-/* CATEGORY FILTER */
+/* ================================
+   CATEGORY
+================================ */
 
 function filterCategory(category){
 
@@ -1066,13 +1136,15 @@ function filterCategory(category){
     return;
   }
 
-  const result = products.filter(product =>
-    product.category === category
-  );
+  const result =
+    products.filter(product =>
+      product.category === category
+    );
 
   displayProducts(result);
 
-  document.getElementById("productsSection")
+  document
+    .getElementById("productsSection")
     .scrollIntoView({
       behavior:"smooth"
     });
@@ -1080,7 +1152,9 @@ function filterCategory(category){
 }
 
 
-/* CART */
+/* ================================
+   CART
+================================ */
 
 function showCart(){
 
@@ -1093,9 +1167,31 @@ function showCart(){
 }
 
 
-/* INITIAL LOAD */
+/* ================================
+   SEARCH ENTER KEY
+================================ */
 
-displayProducts(products);
+document
+  .getElementById("searchInput")
+  .addEventListener("keyup",function(){
+
+    searchProducts();
+
+  });
+
+
+/* ================================
+   START WEBSITE
+================================ */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
+
+    displayProducts(products);
+
+  }
+);
 
 </script>
 
